@@ -14,6 +14,7 @@ import SyllabiListContainer from './containers/SyllabiListContainer';
 const Image = styled.img`
   height: 30%;
   width: 100%;
+  margin-bottom: -3.5%;
 `;
 
 class App extends Component {
