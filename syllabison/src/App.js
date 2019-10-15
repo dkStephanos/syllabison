@@ -4,11 +4,17 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Route } from 'react-router-dom';
+import styled from 'styled-components';
 
 import Callback from './containers/Callback';
 import NavigationContainer from './containers/NavigationContainer';
 import AddSyllabus from './containers/AddSyllabus';
 import SyllabiListContainer from './containers/SyllabiListContainer';
+
+const Image = styled.img`
+  height: 30%;
+  width: 100%;
+`;
 
 class App extends Component {
   render() {
@@ -16,7 +22,7 @@ class App extends Component {
       <Container>
         <Row className="row">
           <Col xs={12}>
-            <h1>Syllabi List</h1>
+            <Image src="SyllabisonLogo.png" />
             <NavigationContainer />
             <Route exact path="/" component={SyllabiListContainer} />
             <Route exact path="/new-syllabus" component={AddSyllabus} />
