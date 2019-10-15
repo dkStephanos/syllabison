@@ -5,7 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Route } from 'react-router-dom';
 
-import Navigation from './components/Navigation';
+import Callback from './containers/Callback';
+import NavigationContainer from './containers/NavigationContainer';
 import AddSyllabus from './containers/AddSyllabus';
 import SyllabiListContainer from './containers/SyllabiListContainer';
 
@@ -16,9 +17,10 @@ class App extends Component {
         <Row className="row">
           <Col xs={12}>
             <h1>Syllabi List</h1>
-            <Navigation />
+            <NavigationContainer />
             <Route exact path="/" component={SyllabiListContainer} />
             <Route exact path="/new-syllabus" component={AddSyllabus} />
+            <Route exact path="/callback" component={Callback} />
           </Col>
         </Row>
       </Container>
