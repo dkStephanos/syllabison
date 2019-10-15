@@ -12,7 +12,7 @@ import AddSyllabus from './containers/AddSyllabus';
 import SyllabiListContainer from './containers/SyllabiListContainer';
 
 const Image = styled.img`
-  height: 30%;
+  height: 15em;
   width: 100%;
   margin-bottom: -3.5%;
 `;
