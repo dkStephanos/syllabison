@@ -4,14 +4,18 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
+import AddSyllabus from './containers/AddSyllabus';
+import SyllabiListContainer from './containers/SyllabiListContainer';
+
 class App extends Component {
   render() {
     return (
       <Container>
         <Row className="row">
           <Col xs={12}>
-            <h1>My New React Bootstrap SPA</h1>
-            <Button>Look, I'm a button!</Button>
+            <h1>Syllabi List</h1>
+            <AddSyllabus />
+            <SyllabiListContainer />
           </Col>
         </Row>
       </Container>
