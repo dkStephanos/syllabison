@@ -47,7 +47,7 @@ class Navigation extends Component {
                 Syllabi List{' '}
               </a>
             </li>
-            {!user && (
+            {user && (
               <li className="nav-item">
                 <a className="nav-link" href="/new-syllabus">
                   {' '}
