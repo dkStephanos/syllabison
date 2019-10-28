@@ -16,13 +16,14 @@ export function signOutUser() {
   };
 }
 
-export function addSyllabus(course_number, course_name) {
+export function addSyllabus(course_number, course_name, course_credits) {
   return {
     type: ADD_SYLLABUS,
     syllabus: {
       _id: new Date().getTime().toString(),
       courseNumber: course_number,
-      courseName: course_name
+      courseName: course_name,
+      courseCredits: course_credits
     }
   };
 }
