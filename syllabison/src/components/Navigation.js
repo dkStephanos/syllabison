@@ -47,12 +47,14 @@ class Navigation extends Component {
                 Syllabi List{' '}
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/new-syllabus">
-                {' '}
-                Add New{' '}
-              </a>
-            </li>
+            {!user && (
+              <li className="nav-item">
+                <a className="nav-link" href="/new-syllabus">
+                  {' '}
+                  Add New{' '}
+                </a>
+              </li>
+            )}
             {!user && (
               <li className="nav-item">
                 <a className="nav-link" onClick={signIn}>
