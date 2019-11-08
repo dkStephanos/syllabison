@@ -24,7 +24,7 @@ class Navigation extends Component {
     let { user } = this.props;
     return (
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           Home
         </a>
         <button
@@ -41,12 +41,6 @@ class Navigation extends Component {
 
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li className="nav-item">
-              <a className="nav-link" href="/">
-                {' '}
-                Syllabi List{' '}
-              </a>
-            </li>
             {user && (
               <li className="nav-item">
                 <a className="nav-link" href="/new-syllabus">
@@ -69,7 +63,7 @@ class Navigation extends Component {
                     Logout
                   </a>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item" style={{ paddingTop: '1.5%' }}>
                   <Profile>
                     <ProfilePicture src={user.profile.picture} />
                     {user.profile.email}
