@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-const Syllabus = ({ courseNumber, courseName, courseCredits }) => (
+const SyllabusListItem = ({ rubricCode, courseNumber, courseName }) => (
   <ListGroup.Item>
-    {courseNumber} - {courseName}: Credits {courseCredits}
+    {rubricCode} {courseNumber} - {courseName}
   </ListGroup.Item>
 );
 
-Syllabus.propTypes = {
+SyllabusListItem.propTypes = {
   course_number: PropTypes.number.isRequired,
   course_credits: PropTypes.number.isRequired,
   course_name: PropTypes.string.isRequired
 };
 
-export default Syllabus;
+export default SyllabusListItem;
