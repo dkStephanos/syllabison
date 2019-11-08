@@ -10,6 +10,7 @@ import Callback from './containers/Callback';
 import NavigationContainer from './containers/NavigationContainer';
 import AddSyllabus from './containers/AddSyllabus';
 import SyllabiListContainer from './containers/SyllabiListContainer';
+import Syllabus from './containers/Syllabus';
 
 const Image = styled.img`
   height: 15em;
@@ -26,6 +27,7 @@ class App extends Component {
             <Image src="SyllabisonLogo.png" />
             <NavigationContainer />
             <Route exact path="/" component={SyllabiListContainer} />
+            <Route path="/syllabi/:syllabusId" component={Syllabus} />
             <Route exact path="/new-syllabus" component={AddSyllabus} />
             <Route exact path="/callback" component={Callback} />
           </Col>

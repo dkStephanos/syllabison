@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addSyllabus } from '../actions';
 import { getCurrentDate } from '../utils';
@@ -9,35 +9,39 @@ let headerStyle = {
   paddingBottom: '1%',
   color: 'deepSkyBlue'
 };
+let rubric_code,
+  course_number,
+  course_name,
+  course_credits,
+  course_desc,
+  prereqs,
+  coreqs,
+  delivery_method,
+  dept_contact_info,
+  course_goals,
+  learning_outcomes,
+  course_topics,
+  revision_date,
+  is_inactive;
+let date = getCurrentDate();
 
 class Syllabus extends Component {
   constructor(props) {
     super(props);
-    this.state = { disabled: true };
-  }
-
-  componentDidMount() {
-    let rubric_code,
-      course_number,
-      course_name,
-      course_credits,
-      course_desc,
-      prereqs,
-      coreqs,
-      delivery_method,
-      dept_contact_info,
-      course_goals,
-      learning_outcomes,
-      course_topics,
-      revision_date,
-      is_inactive;
-    let date = getCurrentDate();
+    this.state = { ...this.state, disabled: true };
   }
 
   handleEditClick() {
     this.setState({ disabled: !this.state.disabled });
   }
+
   render() {
+    let { user } = this.props;
+    const { syllabusId } = this.props.match.params;
+    let syllabus = this.props.syllabiList.find(function(element) {
+      return (element.id = syllabusId);
+    });
+
     return (
       <Jumbotron>
         <h2 style={headerStyle}>Enter Syllabus Details</h2>
@@ -51,24 +55,6 @@ class Syllabus extends Component {
             ) {
               return;
             }
-            dispatch(
-              addSyllabus(
-                rubric_code.value,
-                course_number.value,
-                course_name.value,
-                course_credits.value,
-                course_desc.value,
-                prereqs.value,
-                coreqs.value,
-                delivery_method.value,
-                dept_contact_info.value,
-                course_goals.value,
-                learning_outcomes.value,
-                course_topics.value,
-                revision_date.value,
-                is_inactive.value
-              )
-            );
             rubric_code.value = '';
             course_number.value = '';
             course_name.value = '';
@@ -122,7 +108,7 @@ class Syllabus extends Component {
                 />
                 <Form.Control
                   type="text"
-                  placeholder="Course name:"
+                  placeholder={syllabus.courseName}
                   disabled={this.state.disabled}
                   ref={node => {
                     course_name = node;
@@ -130,7 +116,7 @@ class Syllabus extends Component {
                 />
                 <Form.Control
                   type="text"
-                  placeholder="Number of credits:"
+                  placeholder={syllabus.courseCredits}
                   disabled={this.state.disabled}
                   ref={node => {
                     course_credits = node;
@@ -318,6 +304,15 @@ class Syllabus extends Component {
             <Button
               style={{ float: 'right', color: 'deepSkyBlue' }}
               variant="outline-dark"
+              onClick={this.handleEditClick.bind(this)}
+            >
+              Cancel
+            </Button>
+          )}
+          {!this.state.disabled && (
+            <Button
+              style={{ float: 'right', color: 'deepSkyBlue' }}
+              variant="outline-dark"
               type="submit"
             >
               Submit Syllabus
@@ -331,11 +326,10 @@ class Syllabus extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    syllabusId: ownProps.match.params.syllabusId
+    syllabiList: state.syllabiList,
+    syllabusId: ownProps.syllabusId,
+    user: state.user
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getPostById }
-)(Syllabus);
+export default connect(mapStateToProps)(Syllabus);

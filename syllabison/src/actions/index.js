@@ -35,7 +35,7 @@ export function addSyllabus(
   return {
     type: ADD_SYLLABUS,
     syllabus: {
-      _id: new Date().getTime().toString(),
+      id: new Date().getTime().toString(),
       rubricCode: rubric_code,
       courseNumber: course_number,
       courseName: course_name,
