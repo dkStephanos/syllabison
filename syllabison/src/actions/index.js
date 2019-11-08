@@ -16,14 +16,40 @@ export function signOutUser() {
   };
 }
 
-export function addSyllabus(course_number, course_name, course_credits) {
+export function addSyllabus(
+  rubric_code,
+  course_number,
+  course_name,
+  course_credits,
+  course_desc,
+  prereqs,
+  coreqs,
+  delivery_method,
+  dept_contact_info,
+  course_goals,
+  learning_outcomes,
+  course_topics,
+  revision_date,
+  is_inactive
+) {
   return {
     type: ADD_SYLLABUS,
     syllabus: {
       _id: new Date().getTime().toString(),
+      rubric_code: rubric_code,
       courseNumber: course_number,
       courseName: course_name,
-      courseCredits: course_credits
+      courseCredits: course_credits,
+      courseDesc: course_desc,
+      prereqs: prereqs,
+      coreqs: coreqs,
+      deliveryMethod: delivery_method,
+      deptContactInfo: dept_contact_info,
+      courseGoals: course_goals,
+      learningOutcomes: learning_outcomes,
+      courseTopics: course_topics,
+      revisionDate: revision_date,
+      isInactive: is_inactive
     }
   };
 }

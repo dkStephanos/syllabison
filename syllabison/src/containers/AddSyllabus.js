@@ -6,13 +6,24 @@ import { Button, Form, Row, Col } from 'react-bootstrap';
 import { InputGroup, Jumbotron } from 'react-bootstrap';
 
 let AddSyllabus = ({ dispatch }) => {
-  let course_number, course_name, course_credits;
+  let rubric_code,
+    course_number,
+    course_name,
+    course_credits,
+    course_desc,
+    prereqs,
+    coreqs,
+    delivery_method,
+    dept_contact_info,
+    course_goals,
+    learning_outcomes,
+    course_topics,
+    revision_date,
+    is_inactive;
   let date = getCurrentDate();
 
   let headerStyle = {
     paddingBottom: '1%',
-    textDecoration: 'underline',
-    textDecorationColor: 'dimGray',
     color: 'deepSkyBlue'
   };
 
@@ -23,22 +34,44 @@ let AddSyllabus = ({ dispatch }) => {
         onSubmit={e => {
           e.preventDefault();
           if (
+            !rubric_code.value.trim() ||
             !course_number.value.trim() ||
-            !course_name.value.trim() ||
-            !course_credits.value.trim()
+            !course_name.value.trim()
           ) {
             return;
           }
           dispatch(
             addSyllabus(
+              rubric_code.value,
               course_number.value,
               course_name.value,
-              course_credits.value
+              course_credits.value,
+              course_desc.value,
+              prereqs.value,
+              coreqs.value,
+              delivery_method.value,
+              dept_contact_info.value,
+              course_goals.value,
+              learning_outcomes.value,
+              course_topics.value,
+              revision_date.value,
+              is_inactive.value
             )
           );
+          rubric_code.value = '';
           course_number.value = '';
           course_name.value = '';
           course_credits.value = '';
+          course_desc.value = '';
+          prereqs.value = '';
+          coreqs.value = '';
+          delivery_method.value = '';
+          dept_contact_info.value = '';
+          course_goals.value = '';
+          learning_outcomes.value = '';
+          course_topics.value = '';
+          revision_date.value = '';
+          is_inactive.value = '';
         }}
       >
         <Form.Row>
@@ -49,7 +82,12 @@ let AddSyllabus = ({ dispatch }) => {
                   Course Info:
                 </InputGroup.Text>
               </InputGroup.Prepend>
-              <Form.Control as="select">
+              <Form.Control
+                ref={node => {
+                  rubric_code = node;
+                }}
+                as="select"
+              >
                 <option>Rubric Code:</option>
                 <option>ACCT</option>
                 <option>CSCI</option>
@@ -88,6 +126,7 @@ let AddSyllabus = ({ dispatch }) => {
         </Form.Row>
 
         <h4 style={headerStyle}>Catalog Information:</h4>
+
         <Form.Group as={Row}>
           <Form.Label column sm={2}>
             Catalog Description:
@@ -97,6 +136,9 @@ let AddSyllabus = ({ dispatch }) => {
               as="textarea"
               rows="4"
               placeholder="Enter the course description:"
+              ref={node => {
+                course_desc = node;
+              }}
             />
           </Col>
         </Form.Group>
@@ -106,7 +148,14 @@ let AddSyllabus = ({ dispatch }) => {
             Prerequisites:
           </Form.Label>
           <Col sm={10}>
-            <Form.Control as="textarea" rows="2" placeholder="Prereqs:" />
+            <Form.Control
+              as="textarea"
+              rows="2"
+              placeholder="Prereqs:"
+              ref={node => {
+                prereqs = node;
+              }}
+            />
           </Col>
         </Form.Group>
 
@@ -115,7 +164,14 @@ let AddSyllabus = ({ dispatch }) => {
             Corequisites:
           </Form.Label>
           <Col sm={10}>
-            <Form.Control as="textarea" rows="2" placeholder="Coreqs:" />
+            <Form.Control
+              as="textarea"
+              rows="2"
+              placeholder="Coreqs:"
+              ref={node => {
+                coreqs = node;
+              }}
+            />
           </Col>
         </Form.Group>
 
@@ -124,7 +180,12 @@ let AddSyllabus = ({ dispatch }) => {
             Delivery Method:
           </Form.Label>
           <Col sm={10}>
-            <Form.Control placeholder="Traditional, Online, etc." />
+            <Form.Control
+              placeholder="Traditional, Online, etc."
+              ref={node => {
+                delivery_method = node;
+              }}
+            />
           </Col>
         </Form.Group>
 
@@ -135,7 +196,12 @@ let AddSyllabus = ({ dispatch }) => {
             Dept Contact Info:
           </Form.Label>
           <Col sm={10}>
-            <Form.Control placeholder="Office #" />
+            <Form.Control
+              placeholder="Office #"
+              ref={node => {
+                dept_contact_info = node;
+              }}
+            />
           </Col>
         </Form.Group>
 
@@ -150,6 +216,9 @@ let AddSyllabus = ({ dispatch }) => {
               as="textarea"
               rows="4"
               placeholder="Enter the various course goals:"
+              ref={node => {
+                course_goals = node;
+              }}
             />
           </Col>
         </Form.Group>
@@ -163,6 +232,9 @@ let AddSyllabus = ({ dispatch }) => {
               as="textarea"
               rows="4"
               placeholder="Enter the learning outcomes:"
+              ref={node => {
+                learning_outcomes = node;
+              }}
             />
           </Col>
         </Form.Group>
@@ -176,6 +248,9 @@ let AddSyllabus = ({ dispatch }) => {
               as="textarea"
               rows="4"
               placeholder="Enter the topics for the course:"
+              ref={node => {
+                course_topics = node;
+              }}
             />
           </Col>
         </Form.Group>
@@ -187,12 +262,21 @@ let AddSyllabus = ({ dispatch }) => {
             Revision Date:
           </Form.Label>
           <Col sm={3}>
-            <Form.Control type="text" placeholder={date} />
+            <Form.Control
+              type="text"
+              placeholder={date}
+              ref={node => {
+                revision_date = node;
+              }}
+            />
           </Col>
           <Form.Check
             style={{ paddingTop: '.5%' }}
             type="checkbox"
             label="Is Inactive"
+            ref={node => {
+              is_inactive = node;
+            }}
           />
         </Form.Group>
 
