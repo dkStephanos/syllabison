@@ -48,7 +48,7 @@ let AddSyllabus = ({ dispatch }) => {
                 </InputGroup.Text>
               </InputGroup.Prepend>
               <Form.Control as="select">
-                <option>Rubric</option>
+                <option>Rubric Code:</option>
                 <option>ACCT</option>
                 <option>CSCI</option>
                 <option>DIGM</option>
@@ -187,7 +187,11 @@ let AddSyllabus = ({ dispatch }) => {
           <Col sm={3}>
             <Form.Control type="text" placeholder={date} />
           </Col>
-          <Form.Check type="checkbox" label="Is Inactive" />
+          <Form.Check
+            style={{ paddingTop: '.5%' }}
+            type="checkbox"
+            label="Is Inactive"
+          />
         </Form.Group>
 
         <Button style={{ float: 'right' }} variant="primary" type="submit">
