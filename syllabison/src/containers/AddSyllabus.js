@@ -11,7 +11,9 @@ let AddSyllabus = ({ dispatch }) => {
 
   let headerStyle = {
     paddingBottom: '1%',
-    textDecoration: 'underline'
+    textDecoration: 'underline',
+    textDecorationColor: 'dimGray',
+    color: 'deepSkyBlue'
   };
 
   return (
@@ -194,7 +196,11 @@ let AddSyllabus = ({ dispatch }) => {
           />
         </Form.Group>
 
-        <Button style={{ float: 'right' }} variant="primary" type="submit">
+        <Button
+          style={{ float: 'right', color: 'deepSkyBlue' }}
+          variant="outline-dark"
+          type="submit"
+        >
           Submit Syllabus
         </Button>
       </Form>

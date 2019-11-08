@@ -78,7 +78,11 @@ class Navigation extends Component {
               type="search"
               placeholder="Search"
             ></input>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <button
+              class="btn btn-outline-dark my-2 my-sm-0"
+              style={{ color: 'deepSkyBlue' }}
+              type="submit"
+            >
               Search
             </button>
           </form>
