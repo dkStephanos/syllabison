@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ListGroup from 'react-bootstrap/ListGroup';
 
+let listItemStyle = {
+  cursor: 'pointer'
+};
+
 class SyllabusListItem extends Component {
   redirectToShowPage = id => {
     window.location.replace(`/syllabi/${id}`);
@@ -10,7 +14,10 @@ class SyllabusListItem extends Component {
   render() {
     let { id, rubricCode, courseNumber, courseName } = this.props;
     return (
-      <ListGroup.Item onClick={() => this.redirectToShowPage(id)}>
+      <ListGroup.Item
+        style={listItemStyle}
+        onClick={() => this.redirectToShowPage(id)}
+      >
         {rubricCode} {courseNumber} - {courseName}
       </ListGroup.Item>
     );

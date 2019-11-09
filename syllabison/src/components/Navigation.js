@@ -51,7 +51,11 @@ class Navigation extends Component {
             )}
             {!user && (
               <li className="nav-item">
-                <a className="nav-link" onClick={signIn}>
+                <a
+                  className="nav-link"
+                  style={{ cursor: 'pointer' }}
+                  onClick={signIn}
+                >
                   Login
                 </a>
               </li>
@@ -59,7 +63,11 @@ class Navigation extends Component {
             {user && (
               <Fragment>
                 <li className="nav-item">
-                  <a className="nav-link" onClick={() => this.logout()}>
+                  <a
+                    className="nav-link"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => this.logout()}
+                  >
                     Logout
                   </a>
                 </li>
