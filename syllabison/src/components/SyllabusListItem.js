@@ -2,21 +2,36 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-let listItemStyle = {
-  cursor: 'pointer'
-};
-
 class SyllabusListItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hover: false
+    };
+  }
+
+  toggleHover() {
+    this.setState({ hover: !this.state.hover });
+  }
+
   redirectToShowPage = id => {
     window.location.replace(`/syllabi/${id}`);
   };
 
   render() {
     let { id, rubricCode, courseNumber, courseName } = this.props;
+    let listItemStyle;
+
+    if (this.state.hover) {
+      listItemStyle = { color: 'lightSkyBlue', cursor: 'pointer' };
+    }
+
     return (
       <ListGroup.Item
         style={listItemStyle}
         onClick={() => this.redirectToShowPage(id)}
+        onMouseEnter={this.toggleHover.bind(this)}
+        onMouseLeave={this.toggleHover.bind(this)}
       >
         {rubricCode} {courseNumber} - {courseName}
       </ListGroup.Item>
