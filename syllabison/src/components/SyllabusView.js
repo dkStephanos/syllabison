@@ -44,7 +44,7 @@ class SyllabusView extends Component {
   }
 
   render() {
-    let { syllabus, user } = this.props;
+    let { syllabus, user, syllabusId } = this.props;
     return (
       <Jumbotron>
         <h2 style={headerStyle}>Enter Syllabus Details</h2>
@@ -123,7 +123,7 @@ class SyllabusView extends Component {
                 />
                 <Form.Control
                   type="text"
-                  placeholder={syllabus.courseCredits}
+                  placeholder={syllabusId}
                   disabled={this.state.disabled}
                   style={disabledStyle}
                   ref={node => {
