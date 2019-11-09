@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-const SyllabusListItem = ({ rubricCode, courseNumber, courseName }) => (
-  <ListGroup.Item>
-    {rubricCode} {courseNumber} - {courseName}
-  </ListGroup.Item>
-);
+class SyllabusListItem extends Component {
+  redirectToShowPage = id => {
+    window.location.replace(`/syllabi/${id}`);
+  };
+
+  render() {
+    let { id, rubricCode, courseNumber, courseName } = this.props;
+    return (
+      <ListGroup.Item onClick={() => this.redirectToShowPage(id)}>
+        {rubricCode} {courseNumber} - {courseName}
+      </ListGroup.Item>
+    );
+  }
+}
 
 SyllabusListItem.propTypes = {
   course_number: PropTypes.number.isRequired,
