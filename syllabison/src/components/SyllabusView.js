@@ -77,12 +77,13 @@ class SyllabusView extends Component {
                 </InputGroup.Prepend>
                 <Form.Control
                   disabled={this.state.disabled}
+                  value={syllabus.rubricCode}
                   ref={node => {
                     rubric_code = node;
                   }}
                   as="select"
                 >
-                  <option>Rubric Code:</option>
+                  //<option>{syllabus.rubricCode}</option>
                   <option>ACCT</option>
                   <option>CSCI</option>
                   <option>DIGM</option>
@@ -104,7 +105,7 @@ class SyllabusView extends Component {
                 />
                 <Form.Control
                   type="text"
-                  placeholder="fuck"
+                  value={syllabus.courseName}
                   disabled={this.state.disabled}
                   ref={node => {
                     course_name = node;
@@ -132,7 +133,7 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                placeholder="Enter the course description:"
+                value={syllabus.courseDesc}
                 disabled={this.state.disabled}
                 ref={node => {
                   course_desc = node;
@@ -149,7 +150,7 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="2"
-                placeholder="Prereqs:"
+                value={syllabus.prereqs}
                 disabled={this.state.disabled}
                 ref={node => {
                   prereqs = node;
@@ -166,7 +167,7 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="2"
-                placeholder="Coreqs:"
+                value={syllabus.coreqs}
                 disabled={this.state.disabled}
                 ref={node => {
                   coreqs = node;
@@ -181,7 +182,7 @@ class SyllabusView extends Component {
             </Form.Label>
             <Col sm={10}>
               <Form.Control
-                placeholder="Traditional, Online, etc."
+                value={syllabus.deliveryMethod}
                 disabled={this.state.disabled}
                 ref={node => {
                   delivery_method = node;
@@ -198,7 +199,7 @@ class SyllabusView extends Component {
             </Form.Label>
             <Col sm={10}>
               <Form.Control
-                placeholder="Office #"
+                value={syllabus.deptContactInfo}
                 disabled={this.state.disabled}
                 ref={node => {
                   dept_contact_info = node;
@@ -217,7 +218,7 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                placeholder="Enter the various course goals:"
+                value={syllabus.courseGoals}
                 disabled={this.state.disabled}
                 ref={node => {
                   course_goals = node;
@@ -234,7 +235,7 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                placeholder="Enter the learning outcomes:"
+                value={syllabus.learningOutcomes}
                 disabled={this.state.disabled}
                 ref={node => {
                   learning_outcomes = node;
@@ -251,7 +252,7 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                placeholder="Enter the topics for the course:"
+                value={syllabus.courseTopics}
                 disabled={this.state.disabled}
                 ref={node => {
                   course_topics = node;
@@ -269,22 +270,25 @@ class SyllabusView extends Component {
             <Col sm={3}>
               <Form.Control
                 type="text"
-                placeholder={date}
+                value={syllabus.revisionDate}
                 disabled={this.state.disabled}
                 ref={node => {
                   revision_date = node;
                 }}
               />
             </Col>
-            <Form.Check
-              style={{ paddingTop: '.5%' }}
-              type="checkbox"
-              label="Is Inactive"
-              disabled={this.state.disabled}
-              ref={node => {
-                is_inactive = node;
-              }}
-            />
+            {this.props.user && (
+              <Form.Check
+                style={{ paddingTop: '.5%' }}
+                type="checkbox"
+                label="Is Inactive"
+                value={syllabus.isInactive}
+                disabled={this.state.disabled}
+                ref={node => {
+                  is_inactive = node;
+                }}
+              />
+            )}
           </Form.Group>
 
           {this.props.user && this.state.disabled && (
