@@ -10,13 +10,6 @@ let headerStyle = {
   color: 'deepSkyBlue'
 };
 
-let disabledStyle = {
-  '&:disabled': {
-    textColor: 'lightSkyBlue'
-  },
-  textColor: 'lightSkyBlue'
-};
-
 let rubric_code,
   course_number,
   course_name,
@@ -45,6 +38,11 @@ class SyllabusView extends Component {
 
   render() {
     let { syllabus, user, syllabusId } = this.props;
+    let disabledStyle;
+    if (this.state.disabled) {
+      disabledStyle = { backgroundColor: 'rgba(135,206,250,.35)' };
+    } else {
+    }
     return (
       <Jumbotron>
         <h2 style={headerStyle}>
@@ -292,6 +290,7 @@ class SyllabusView extends Component {
               <Form.Control
                 type="text"
                 placeholder={syllabus.revisionDate}
+                style={disabledStyle}
                 disabled={this.state.disabled}
                 ref={node => {
                   revision_date = node;
