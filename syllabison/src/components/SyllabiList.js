@@ -14,7 +14,48 @@ import SyllabusListItem from './SyllabusListItem';
 let rubric_code, course_number, course_name;
 
 class SyllabiList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { ...this.state, sortChoice: 'rubric' };
+  }
+
+  handleSortSelect(e) {
+    switch (e) {
+      case 'rubric':
+        this.setState({ sortChoice: 'rubric' });
+        break;
+
+      case 'courseNum':
+        this.setState({ sortChoice: 'courseNum' });
+        break;
+
+      case 'courseName':
+        this.setState({ sortChoice: 'courseName' });
+        break;
+    }
+  }
+
   render() {
+    switch (this.state.sortChoice) {
+      case 'rubric':
+        this.props.syllabiList.sort((s1, s2) => {
+          return s1.rubricCode > s2.rubricCode ? 1 : -1;
+        });
+        break;
+
+      case 'courseNum':
+        this.props.syllabiList.sort((s1, s2) => {
+          return s1.courseNumber > s2.courseNumber ? 1 : -1;
+        });
+        break;
+
+      case 'courseName':
+        this.props.syllabiList.sort((s1, s2) => {
+          return s1.courseName > s2.courseName ? 1 : -1;
+        });
+        break;
+    }
+
     return (
       <Jumbotron>
         <InputGroup>
@@ -68,10 +109,11 @@ class SyllabiList extends Component {
             title={` Sort By `}
             id={`dropdown-button-drop`}
             key="sortButton"
+            onSelect={e => this.handleSortSelect(e)}
           >
-            <Dropdown.Item eventKey="1">Rubric Code</Dropdown.Item>
-            <Dropdown.Item eventKey="2">Course Number</Dropdown.Item>
-            <Dropdown.Item eventKey="3">Coure Name</Dropdown.Item>
+            <Dropdown.Item eventKey="rubric">Rubric Code</Dropdown.Item>
+            <Dropdown.Item eventKey="courseNum">Course Number</Dropdown.Item>
+            <Dropdown.Item eventKey="courseName">Coure Name</Dropdown.Item>
           </DropdownButton>
         </InputGroup>
         <br />
@@ -86,7 +128,7 @@ class SyllabiList extends Component {
     SyllabiList.propTypes = {
       syllabiList: PropTypes.arrayOf(
         PropTypes.shape({
-          _id: PropTypes.string.isRequired,
+          id: PropTypes.string.isRequired,
           course_name: PropTypes.string.isRequired
         }).isRequired
       ).isRequired
