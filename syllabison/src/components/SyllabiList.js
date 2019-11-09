@@ -10,6 +10,7 @@ import {
   Button
 } from 'react-bootstrap';
 import SyllabusListItem from './SyllabusListItem';
+
 let rubric_code, course_number, course_name;
 
 class SyllabiList extends Component {
