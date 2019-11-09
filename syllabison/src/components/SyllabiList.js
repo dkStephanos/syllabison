@@ -105,15 +105,31 @@ class SyllabiList extends Component {
           </button>
           <DropdownButton
             drop="bottom"
-            variant="secondary"
             title={` Sort By `}
             id={`dropdown-button-drop`}
             key="sortButton"
+            style={{ backgroundColor: 'darkGray' }}
+            variant="secondary"
             onSelect={e => this.handleSortSelect(e)}
           >
-            <Dropdown.Item eventKey="rubric">Rubric Code</Dropdown.Item>
-            <Dropdown.Item eventKey="courseNum">Course Number</Dropdown.Item>
-            <Dropdown.Item eventKey="courseName">Coure Name</Dropdown.Item>
+            <Dropdown.Item
+              active={this.state.sortChoice == 'rubric'}
+              eventKey="rubric"
+            >
+              Rubric Code
+            </Dropdown.Item>
+            <Dropdown.Item
+              active={this.state.sortChoice == 'courseNum'}
+              eventKey="courseNum"
+            >
+              Course Number
+            </Dropdown.Item>
+            <Dropdown.Item
+              active={this.state.sortChoice == 'courseName'}
+              eventKey="courseName"
+            >
+              Coure Name
+            </Dropdown.Item>
           </DropdownButton>
         </InputGroup>
         <br />
