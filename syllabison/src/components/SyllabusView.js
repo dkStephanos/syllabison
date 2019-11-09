@@ -10,6 +10,13 @@ let headerStyle = {
   color: 'deepSkyBlue'
 };
 
+let disabledStyle = {
+  '&:disabled': {
+    textColor: 'lightSkyBlue'
+  },
+  textColor: 'lightSkyBlue'
+};
+
 let rubric_code,
   course_number,
   course_name,
@@ -77,7 +84,8 @@ class SyllabusView extends Component {
                 </InputGroup.Prepend>
                 <Form.Control
                   disabled={this.state.disabled}
-                  value={syllabus.rubricCode}
+                  style={disabledStyle}
+                  placeholder={syllabus.rubricCode}
                   ref={node => {
                     rubric_code = node;
                   }}
@@ -97,24 +105,27 @@ class SyllabusView extends Component {
                 </Form.Control>
                 <Form.Control
                   type="text"
-                  value={syllabus.courseNumber}
+                  placeholder={syllabus.courseNumber}
                   disabled={this.state.disabled}
+                  style={disabledStyle}
                   ref={node => {
                     course_number = node;
                   }}
                 />
                 <Form.Control
                   type="text"
-                  value={syllabus.courseName}
+                  placeholder={syllabus.courseName}
                   disabled={this.state.disabled}
+                  style={disabledStyle}
                   ref={node => {
                     course_name = node;
                   }}
                 />
                 <Form.Control
                   type="text"
-                  value={syllabus.courseCredits}
+                  placeholder={syllabus.courseCredits}
                   disabled={this.state.disabled}
+                  style={disabledStyle}
                   ref={node => {
                     course_credits = node;
                   }}
@@ -133,8 +144,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                value={syllabus.courseDesc}
+                placeholder={syllabus.courseDesc}
                 disabled={this.state.disabled}
+                style={disabledStyle}
                 ref={node => {
                   course_desc = node;
                 }}
@@ -150,8 +162,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="2"
-                value={syllabus.prereqs}
+                placeholder={syllabus.prereqs}
                 disabled={this.state.disabled}
+                style={disabledStyle}
                 ref={node => {
                   prereqs = node;
                 }}
@@ -167,8 +180,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="2"
-                value={syllabus.coreqs}
+                placeholder={syllabus.coreqs}
                 disabled={this.state.disabled}
+                style={disabledStyle}
                 ref={node => {
                   coreqs = node;
                 }}
@@ -182,8 +196,9 @@ class SyllabusView extends Component {
             </Form.Label>
             <Col sm={10}>
               <Form.Control
-                value={syllabus.deliveryMethod}
+                placeholder={syllabus.deliveryMethod}
                 disabled={this.state.disabled}
+                style={disabledStyle}
                 ref={node => {
                   delivery_method = node;
                 }}
@@ -199,8 +214,9 @@ class SyllabusView extends Component {
             </Form.Label>
             <Col sm={10}>
               <Form.Control
-                value={syllabus.deptContactInfo}
+                placeholder={syllabus.deptContactInfo}
                 disabled={this.state.disabled}
+                style={disabledStyle}
                 ref={node => {
                   dept_contact_info = node;
                 }}
@@ -218,8 +234,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                value={syllabus.courseGoals}
+                placeholder={syllabus.courseGoals}
                 disabled={this.state.disabled}
+                style={disabledStyle}
                 ref={node => {
                   course_goals = node;
                 }}
@@ -235,8 +252,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                value={syllabus.learningOutcomes}
+                placeholder={syllabus.learningOutcomes}
                 disabled={this.state.disabled}
+                style={disabledStyle}
                 ref={node => {
                   learning_outcomes = node;
                 }}
@@ -252,8 +270,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                value={syllabus.courseTopics}
+                placeholder={syllabus.courseTopics}
                 disabled={this.state.disabled}
+                style={disabledStyle}
                 ref={node => {
                   course_topics = node;
                 }}
@@ -270,7 +289,7 @@ class SyllabusView extends Component {
             <Col sm={3}>
               <Form.Control
                 type="text"
-                value={syllabus.revisionDate}
+                placeholder={syllabus.revisionDate}
                 disabled={this.state.disabled}
                 ref={node => {
                   revision_date = node;
@@ -282,7 +301,7 @@ class SyllabusView extends Component {
                 style={{ paddingTop: '.5%' }}
                 type="checkbox"
                 label="Is Inactive"
-                value={syllabus.isInactive}
+                placeholder={syllabus.isInactive}
                 disabled={this.state.disabled}
                 ref={node => {
                   is_inactive = node;
