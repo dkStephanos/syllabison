@@ -123,7 +123,7 @@ class SyllabusView extends Component {
                 />
                 <Form.Control
                   type="text"
-                  placeholder={syllabusId}
+                  placeholder={syllabus.courseCredits}
                   disabled={this.state.disabled}
                   style={disabledStyle}
                   ref={node => {
