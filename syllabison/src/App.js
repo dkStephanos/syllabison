@@ -11,7 +11,6 @@ import NavigationContainer from './containers/NavigationContainer';
 import AddSyllabus from './containers/AddSyllabus';
 import SyllabiListContainer from './containers/SyllabiListContainer';
 import SyllabusViewContainer from './containers/SyllabusViewContainer';
-import Syllabus from './containers/Syllabus';
 
 import Logo from './SyllabisonLogo.png';
 const Image = styled.img`
@@ -29,7 +28,6 @@ class App extends Component {
             <Image src={Logo} />
             <NavigationContainer />
             <Route exact path="/" component={SyllabiListContainer} />
-            <Route path="/syllabus" component={Syllabus} />
             <Route
               path="/syllabi/:syllabusId"
               component={SyllabusViewContainer}
