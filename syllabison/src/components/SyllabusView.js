@@ -47,7 +47,9 @@ class SyllabusView extends Component {
     let { syllabus, user, syllabusId } = this.props;
     return (
       <Jumbotron>
-        <h2 style={headerStyle}>Enter Syllabus Details</h2>
+        <h2 style={headerStyle}>
+          {this.state.disabled ? syllabus.courseName : 'Edit Syllabus'}
+        </h2>
         <Form
           onSubmit={e => {
             e.preventDefault();
