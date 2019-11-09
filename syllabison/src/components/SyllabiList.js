@@ -1,11 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Jumbotron from 'react-bootstrap/Jumbotron';
+import {
+  ListGroup,
+  Jumbotron,
+  DropdownButton,
+  Dropdown
+} from 'react-bootstrap';
 import SyllabusListItem from './SyllabusListItem';
 
 const SyllabiList = ({ syllabiList }) => (
   <Jumbotron>
+    <DropdownButton
+      drop="right"
+      variant="secondary"
+      title={` Sort By `}
+      id={`dropdown-button-drop`}
+      key="sortButton"
+    >
+      <Dropdown.Item eventKey="1">Rubric Code</Dropdown.Item>
+      <Dropdown.Item eventKey="2">Course Number</Dropdown.Item>
+      <Dropdown.Item eventKey="3">Coure Name</Dropdown.Item>
+    </DropdownButton>
+    <br />
     <ListGroup>
       {syllabiList.map((syllabus, index) => (
         <SyllabusListItem key={index} {...syllabus} />
