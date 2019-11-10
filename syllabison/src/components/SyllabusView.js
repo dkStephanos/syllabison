@@ -95,7 +95,6 @@ class SyllabusView extends Component {
           <Button
             style={{ float: 'right', color: 'deepSkyBlue' }}
             variant="outline-dark"
-            onClick={this.handleEditClick.bind(this)}
           >
             Download
           </Button>
