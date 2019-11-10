@@ -4,6 +4,7 @@ export const SIGN_OUT = 'SIGN_OUT';
 
 export const ADD_SYLLABUS = 'ADD_SYLLABUS';
 export const UPDATE_SYLLABUS = 'UPDATE_SYLLABUS';
+export const UPDATED_FORM_DATA = 'UPDATED_FORM_DATA';
 
 export function handleAuthenticationCallback() {
   return {
@@ -54,6 +55,13 @@ export function addSyllabus(
     }
   };
 }
+
+export const updateSyllabusFormData = syllabusFormData => {
+  return {
+    type: 'UPDATED_FORM_DATA',
+    syllabusFormData
+  };
+};
 
 export function updateSyllabus(
   id,

@@ -8,7 +8,8 @@ const mapStateToProps = (state, props) => {
   return {
     syllabus: state.syllabiList.find(e => e.id == syllabusId), //Just set to the first in the collection for now...
     user: state.user,
-    syllabusId: syllabusId
+    syllabusId: syllabusId,
+    syllabusFormData: state.syllabusFormData
   };
 };
 

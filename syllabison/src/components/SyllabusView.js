@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addSyllabus } from '../actions';
 import { getCurrentDate } from '../utils';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import { InputGroup, Jumbotron } from 'react-bootstrap';
@@ -32,12 +30,60 @@ class SyllabusView extends Component {
     this.state = { ...this.state, disabled: true };
   }
 
+  componentDidMount() {
+    let {
+      rubricCode,
+      courseNumber,
+      courseName,
+      courseCredits,
+      courseDesc,
+      prereqs,
+      coreqs,
+      deliveryMethod,
+      deptContactInfo,
+      courseGoals,
+      learningOutcomes,
+      courseTopics,
+      revisionDate,
+      isInactive
+    } = this.props.syllabus;
+    this.props.actions.updateSyllabusFormData({
+      rubric_code: rubricCode,
+      course_number: courseNumber,
+      course_name: courseName,
+      course_credits: courseCredits,
+      course_desc: courseDesc,
+      prereqs: prereqs,
+      coreqs: coreqs,
+      delivery_method: deliveryMethod,
+      dept_contact_info: deptContactInfo,
+      course_goals: courseGoals,
+      learning_outcomes: learningOutcomes,
+      course_topics: courseTopics,
+      revision_date: revisionDate,
+      is_inactive: isInactive
+    });
+  }
+
+  handleOnChange = event => {
+    const { name, value } = event.target;
+    const currentSyllabusFormData = Object.assign(
+      {},
+      this.props.syllabusFormData,
+      {
+        [name]: value
+      }
+    );
+    console.log(currentSyllabusFormData);
+    this.props.actions.updateSyllabusFormData(currentSyllabusFormData);
+  };
+
   handleEditClick() {
     this.setState({ disabled: !this.state.disabled });
   }
 
   render() {
-    let { syllabus, user, syllabusId } = this.props;
+    let { syllabus, user, syllabusId, syllabusFormData } = this.props;
     let disabledStyle;
     if (this.state.disabled) {
       disabledStyle = { backgroundColor: 'rgba(135,206,250,.35)' };
@@ -88,20 +134,6 @@ class SyllabusView extends Component {
               revision_date.value,
               is_inactive.value
             );
-            rubric_code.value = '';
-            course_number.value = '';
-            course_name.value = '';
-            course_credits.value = '';
-            course_desc.value = '';
-            prereqs.value = '';
-            coreqs.value = '';
-            delivery_method.value = '';
-            dept_contact_info.value = '';
-            course_goals.value = '';
-            learning_outcomes.value = '';
-            course_topics.value = '';
-            revision_date.value = '';
-            is_inactive.value = '';
           }}
         >
           <Form.Row>
@@ -113,9 +145,11 @@ class SyllabusView extends Component {
                   </InputGroup.Text>
                 </InputGroup.Prepend>
                 <Form.Control
+                  value={syllabusFormData.rubric_code}
+                  name="rubric_code"
+                  onChange={this.handleOnChange}
                   disabled={this.state.disabled}
                   style={disabledStyle}
-                  placeholder={syllabus.rubricCode}
                   ref={node => {
                     rubric_code = node;
                   }}
@@ -135,7 +169,9 @@ class SyllabusView extends Component {
                 </Form.Control>
                 <Form.Control
                   type="text"
-                  placeholder={syllabus.courseNumber}
+                  value={syllabusFormData.course_number}
+                  name="course_number"
+                  onChange={this.handleOnChange}
                   disabled={this.state.disabled}
                   style={disabledStyle}
                   ref={node => {
@@ -144,7 +180,9 @@ class SyllabusView extends Component {
                 />
                 <Form.Control
                   type="text"
-                  placeholder={syllabus.courseName}
+                  value={syllabusFormData.course_name}
+                  name="course_name"
+                  onChange={this.handleOnChange}
                   disabled={this.state.disabled}
                   style={disabledStyle}
                   ref={node => {
@@ -153,7 +191,9 @@ class SyllabusView extends Component {
                 />
                 <Form.Control
                   type="text"
-                  placeholder={syllabus.courseCredits}
+                  value={syllabusFormData.course_credits}
+                  name="course_credits"
+                  onChange={this.handleOnChange}
                   disabled={this.state.disabled}
                   style={disabledStyle}
                   ref={node => {
@@ -174,7 +214,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                placeholder={syllabus.courseDesc}
+                value={syllabusFormData.course_desc}
+                name="course_desc"
+                onChange={this.handleOnChange}
                 disabled={this.state.disabled}
                 style={disabledStyle}
                 ref={node => {
@@ -192,7 +234,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="2"
-                placeholder={syllabus.prereqs}
+                value={syllabusFormData.prereqs}
+                name="prereqs"
+                onChange={this.handleOnChange}
                 disabled={this.state.disabled}
                 style={disabledStyle}
                 ref={node => {
@@ -210,7 +254,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="2"
-                placeholder={syllabus.coreqs}
+                value={syllabusFormData.coreqs}
+                name="coreqs"
+                onChange={this.handleOnChange}
                 disabled={this.state.disabled}
                 style={disabledStyle}
                 ref={node => {
@@ -226,7 +272,9 @@ class SyllabusView extends Component {
             </Form.Label>
             <Col sm={10}>
               <Form.Control
-                placeholder={syllabus.deliveryMethod}
+                value={syllabusFormData.delivery_method}
+                name="delivery_method"
+                onChange={this.handleOnChange}
                 disabled={this.state.disabled}
                 style={disabledStyle}
                 ref={node => {
@@ -244,7 +292,9 @@ class SyllabusView extends Component {
             </Form.Label>
             <Col sm={10}>
               <Form.Control
-                placeholder={syllabus.deptContactInfo}
+                value={syllabusFormData.dept_contact_info}
+                name="dept_contact_info"
+                onChange={this.handleOnChange}
                 disabled={this.state.disabled}
                 style={disabledStyle}
                 ref={node => {
@@ -264,7 +314,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                placeholder={syllabus.courseGoals}
+                value={syllabusFormData.course_goals}
+                name="course_goals"
+                onChange={this.handleOnChange}
                 disabled={this.state.disabled}
                 style={disabledStyle}
                 ref={node => {
@@ -282,7 +334,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                placeholder={syllabus.learningOutcomes}
+                value={syllabusFormData.learning_outcomes}
+                name="learning_outcomes"
+                onChange={this.handleOnChange}
                 disabled={this.state.disabled}
                 style={disabledStyle}
                 ref={node => {
@@ -300,7 +354,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                placeholder={syllabus.courseTopics}
+                value={syllabusFormData.course_topics}
+                name="course_topics"
+                onChange={this.handleOnChange}
                 disabled={this.state.disabled}
                 style={disabledStyle}
                 ref={node => {
@@ -319,7 +375,9 @@ class SyllabusView extends Component {
             <Col sm={3}>
               <Form.Control
                 type="text"
-                placeholder={syllabus.revisionDate}
+                value={syllabusFormData.revision_date}
+                name="revision_date"
+                onChange={this.handleOnChange}
                 style={disabledStyle}
                 disabled={this.state.disabled}
                 ref={node => {
@@ -332,7 +390,9 @@ class SyllabusView extends Component {
                 style={{ paddingTop: '.5%' }}
                 type="checkbox"
                 label="Is Inactive"
-                placeholder={syllabus.isInactive}
+                value={syllabusFormData.is_inactive}
+                name="is_inactive"
+                onChange={this.handleOnChange}
                 disabled={this.state.disabled}
                 ref={node => {
                   is_inactive = node;

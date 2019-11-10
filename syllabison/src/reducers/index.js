@@ -1,8 +1,24 @@
-import { ADD_SYLLABUS, UPDATE_SYLLABUS } from '../actions';
+import { ADD_SYLLABUS, UPDATE_SYLLABUS, UPDATED_FORM_DATA } from '../actions';
 import { USER_PROFILE_LOADED, SIGN_OUT } from '../actions';
 
 const initialState = {
-  syllabiList: []
+  syllabiList: [],
+  syllabusFormData: {
+    rubric_ode: '',
+    course_number: '',
+    course_name: '',
+    course_credits: '',
+    course_desc: '',
+    prereqs: '',
+    coreqs: '',
+    delivery_method: '',
+    dept_contact_info: '',
+    course_goals: '',
+    learning_outcomes: '',
+    course_topics: '',
+    revision_date: '',
+    is_inactive: false
+  }
 };
 
 export default function syllabisonApp(state = initialState, action) {
@@ -19,7 +35,6 @@ export default function syllabisonApp(state = initialState, action) {
         syllabiList: newSyllabiList
       };
     case UPDATE_SYLLABUS:
-      console.log('Updating syllabus');
       let updatedSyllabiList = [
         ...state.syllabiList.filter(
           syllabus => syllabus.id !== action.syllabus.id
@@ -28,8 +43,13 @@ export default function syllabisonApp(state = initialState, action) {
       ];
       return {
         syllabiList: updatedSyllabiList,
-        user: state.user
+        user: state.user,
+        syllabusFormData: state.syllabusFormData
       };
+    case UPDATED_FORM_DATA:
+      return Object.assign({}, state, {
+        syllabusFormData: action.syllabusFormData
+      });
     case USER_PROFILE_LOADED:
       return {
         ...state,
