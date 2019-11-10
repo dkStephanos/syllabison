@@ -108,13 +108,13 @@ class SyllabusView extends Component {
           onSubmit={e => {
             e.preventDefault();
             this.handleEditClick();
-            /*if (
-            !rubric_code.value.trim() ||
-            !course_number.value.trim() ||
-            !course_name.value.trim()
-          ) {
-            return;
-          }*/
+            if (
+              !rubric_code.value.trim() ||
+              !course_number.value.trim() ||
+              !course_name.value.trim()
+            ) {
+              return;
+            }
             console.log(`Submitted: ${course_topics.value}`);
             this.props.actions.updateSyllabus(
               syllabus.id,
