@@ -128,7 +128,7 @@ class SyllabiList extends Component {
               active={this.state.sortChoice == 'courseName'}
               eventKey="courseName"
             >
-              Coure Name
+              Course Name
             </Dropdown.Item>
           </DropdownButton>
         </InputGroup>
