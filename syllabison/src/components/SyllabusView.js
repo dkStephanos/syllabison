@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addSyllabus } from '../actions';
+import { addSyllabus, updateSyllabusFormData } from '../actions';
 import { getCurrentDate } from '../utils';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import { InputGroup, Jumbotron } from 'react-bootstrap';
@@ -32,12 +32,37 @@ class SyllabusView extends Component {
     this.state = { ...this.state, disabled: true };
   }
 
+  componentDidMount() {
+    let { rubricCode, courseName, courseDesc } = this.props.syllabus;
+    dispatch(
+      updateSyllabusFormData({
+        rubric_code: rubricCode,
+        course_name: courseName,
+        course_desc: courseDesc
+      })
+    );
+  }
+
+  handleOnChange = event => {
+    const { name, value } = event.target;
+    const currentSyllabusFormData = Object.assign(
+      {},
+      this.props.syllabusFormData,
+      {
+        [name]: value
+      }
+    );
+    console.log(currentSyllabusFormData);
+    updateSyllabusFormData(currentSyllabusFormData);
+  };
+
   handleEditClick() {
     this.setState({ disabled: !this.state.disabled });
   }
 
   render() {
     let { syllabus, user, syllabusId } = this.props;
+    let { rubricCode, courseName, courseDesc } = this.props.syllabusFormData;
     let disabledStyle;
     if (this.state.disabled) {
       disabledStyle = { backgroundColor: 'rgba(135,206,250,.35)' };
@@ -97,6 +122,7 @@ class SyllabusView extends Component {
                   disabled={this.state.disabled}
                   style={disabledStyle}
                   placeholder={syllabus.rubricCode}
+                  value={rubricCode}
                   ref={node => {
                     rubric_code = node;
                   }}
@@ -125,7 +151,8 @@ class SyllabusView extends Component {
                 />
                 <Form.Control
                   type="text"
-                  placeholder={syllabus.courseName}
+                  value={courseName}
+                  name={course_name}
                   disabled={this.state.disabled}
                   style={disabledStyle}
                   ref={node => {
@@ -155,7 +182,9 @@ class SyllabusView extends Component {
               <Form.Control
                 as="textarea"
                 rows="4"
-                placeholder={syllabus.courseDesc}
+                value={courseDesc}
+                name="course_desc"
+                onChange={this.handleOnChange}
                 disabled={this.state.disabled}
                 style={disabledStyle}
                 ref={node => {

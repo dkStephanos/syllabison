@@ -16,6 +16,13 @@ export function signOutUser() {
   };
 }
 
+export const updateSyllabusFormData = syllabusFormData => {
+  return {
+    type: 'UPDATED_FORM_DATA',
+    syllabusFormData
+  };
+};
+
 export function addSyllabus(
   rubric_code,
   course_number,
