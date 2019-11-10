@@ -55,7 +55,9 @@ class SyllabusView extends Component {
           </Button>
         )}
         <h2 style={headerStyle}>
-          {this.state.disabled ? syllabus.courseName : 'Edit Syllabus'}
+          {this.state.disabled
+            ? syllabus.courseName
+            : `Editing ${syllabus.courseName}`}
         </h2>
         <Form
           onSubmit={e => {
