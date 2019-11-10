@@ -45,6 +45,15 @@ class SyllabusView extends Component {
     }
     return (
       <Jumbotron>
+        {this.state.disabled && (
+          <Button
+            style={{ float: 'right', color: 'deepSkyBlue' }}
+            variant="outline-dark"
+            onClick={this.handleEditClick.bind(this)}
+          >
+            Download
+          </Button>
+        )}
         <h2 style={headerStyle}>
           {this.state.disabled ? syllabus.courseName : 'Edit Syllabus'}
         </h2>
