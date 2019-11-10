@@ -34,13 +34,11 @@ class SyllabusView extends Component {
 
   componentDidMount() {
     let { rubricCode, courseName, courseDesc } = this.props.syllabus;
-    dispatch(
-      updateSyllabusFormData({
-        rubric_code: rubricCode,
-        course_name: courseName,
-        course_desc: courseDesc
-      })
-    );
+    updateSyllabusFormData({
+      rubric_code: rubricCode,
+      course_name: courseName,
+      course_desc: courseDesc
+    });
   }
 
   handleOnChange = event => {
