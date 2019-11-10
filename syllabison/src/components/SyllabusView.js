@@ -320,23 +320,30 @@ class SyllabusView extends Component {
               Edit Syllabus
             </Button>
           )}
-          {!this.state.disabled && (
-            <Button
-              style={{ float: 'right', color: 'deepSkyBlue' }}
-              variant="outline-dark"
-              onClick={this.handleEditClick.bind(this)}
-            >
-              Cancel
-            </Button>
-          )}
-          {!this.state.disabled && (
-            <Button
-              style={{ float: 'right', color: 'deepSkyBlue' }}
-              variant="outline-dark"
-              type="submit"
-            >
-              Submit Syllabus
-            </Button>
+          {this.props.user && !this.state.disabled && (
+            <Form.Group>
+              <Button
+                style={{ float: 'right', color: 'deepSkyBlue' }}
+                variant="outline-dark"
+                onClick={this.handleEditClick.bind(this)}
+              >
+                Cancel
+              </Button>
+              <Button
+                style={{ float: 'right', color: 'deepSkyBlue' }}
+                variant="outline-dark"
+                type="submit"
+              >
+                Delete Syllabus
+              </Button>
+              <Button
+                style={{ float: 'right', color: 'deepSkyBlue' }}
+                variant="outline-dark"
+                type="submit"
+              >
+                Submit Changes
+              </Button>
+            </Form.Group>
           )}
         </Form>
       </Jumbotron>
