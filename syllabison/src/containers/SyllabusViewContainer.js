@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as syllabusActions from '../actions/index';
 import SyllabusView from '../components/SyllabusView';
 
 const mapStateToProps = (state, props) => {
@@ -10,6 +12,15 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const SyllabiViewContainer = connect(mapStateToProps)(SyllabusView);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(syllabusActions, dispatch)
+  };
+}
+
+const SyllabiViewContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SyllabusView);
 
 export default SyllabiViewContainer;

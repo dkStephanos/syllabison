@@ -1,4 +1,4 @@
-import { ADD_SYLLABUS } from '../actions';
+import { ADD_SYLLABUS, UPDATE_SYLLABUS } from '../actions';
 import { USER_PROFILE_LOADED, SIGN_OUT } from '../actions';
 
 const initialState = {
@@ -17,6 +17,18 @@ export default function syllabisonApp(state = initialState, action) {
       return {
         ...state,
         syllabiList: newSyllabiList
+      };
+    case UPDATE_SYLLABUS:
+      console.log('Updating syllabus');
+      let updatedSyllabiList = [
+        ...state.syllabiList.filter(
+          syllabus => syllabus.id !== action.syllabus.id
+        ),
+        Object.assign({}, action.syllabus)
+      ];
+      return {
+        syllabiList: updatedSyllabiList,
+        user: state.user
       };
     case USER_PROFILE_LOADED:
       return {
