@@ -34,7 +34,12 @@ let date = getCurrentDate();
 class SyllabusView extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...this.state, disabled: true, show: false };
+    this.state = {
+      ...this.state,
+      disabled: true,
+      editConfirmShow: false,
+      deleteConfirmShow: false
+    };
   }
 
   componentDidMount() {
@@ -72,12 +77,20 @@ class SyllabusView extends Component {
     });
   }
 
-  handleClose = () => {
-    this.setState({ show: false });
+  handleEditConfirmClose = () => {
+    this.setState({ editConfirmShow: false });
   };
 
-  handleShow = () => {
-    this.setState({ show: true });
+  handleEditConfirmShow = () => {
+    this.setState({ editConfirmShow: true });
+  };
+
+  handleDeleteConfirmClose = () => {
+    this.setState({ deleteConfirmShow: false });
+  };
+
+  handleDeleteConfirmShow = () => {
+    this.setState({ deleteConfirmShow: true });
   };
 
   handleOnChange = event => {
@@ -120,6 +133,7 @@ class SyllabusView extends Component {
             : `Editing ${syllabus.courseName}`}
         </h2>
         <Form
+          id="editForm"
           onSubmit={e => {
             e.preventDefault();
             this.handleEditClick();
@@ -436,13 +450,13 @@ class SyllabusView extends Component {
               <Button
                 style={{ float: 'right', color: 'deepSkyBlue' }}
                 variant="outline-dark"
-                onClick={this.handleShow.bind(this)}
+                onClick={this.handleDeleteConfirmShow.bind(this)}
               >
                 Delete Syllabus
               </Button>
               <Modal
-                show={this.state.show}
-                onHide={this.handleClose.bind(this)}
+                show={this.state.deleteConfirmShow}
+                onHide={this.handleDeleteConfirmClose.bind(this)}
               >
                 <Modal.Header closeButton>
                   <Modal.Title>Confirm Delete</Modal.Title>
@@ -453,7 +467,7 @@ class SyllabusView extends Component {
                 <Modal.Footer>
                   <Button
                     variant="secondary"
-                    onClick={this.handleClose.bind(this)}
+                    onClick={this.handleDeleteConfirmClose.bind(this)}
                   >
                     Cancel
                   </Button>
@@ -472,10 +486,38 @@ class SyllabusView extends Component {
               <Button
                 style={{ float: 'right', color: 'deepSkyBlue' }}
                 variant="outline-dark"
-                type="submit"
+                onClick={this.handleEditConfirmShow.bind(this)}
               >
                 Submit Changes
               </Button>
+              <Modal
+                show={this.state.editConfirmShow}
+                onHide={this.handleEditConfirmClose.bind(this)}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Confirm Edit</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  Are you sure you want to submit changes to this syllabus?
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    variant="secondary"
+                    onClick={this.handleEditConfirmClose.bind(this)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    style={{ color: 'deepSkyBlue' }}
+                    variant="outline-dark"
+                    type="submit"
+                    form="editForm"
+                    onClick={this.handleEditConfirmClose.bind(this)}
+                  >
+                    Submit
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </Form.Group>
           )}
         </Form>
