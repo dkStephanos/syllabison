@@ -2,8 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addSyllabus } from '../actions';
 import { getCurrentDate } from '../utils';
-import { Button, Form, Row, Col } from 'react-bootstrap';
-import { InputGroup, Jumbotron } from 'react-bootstrap';
+import {
+  Button,
+  Form,
+  Row,
+  Col,
+  InputGroup,
+  Jumbotron,
+  Accordion,
+  Card
+} from 'react-bootstrap';
 
 let AddSyllabus = ({ dispatch }) => {
   let rubric_code,
@@ -29,6 +37,38 @@ let AddSyllabus = ({ dispatch }) => {
 
   return (
     <Jumbotron>
+      <Accordion style={{ float: 'right' }}>
+        <Card>
+          <Accordion.Toggle
+            as={Button}
+            variant="outline-dark"
+            style={{ color: 'deepSkyBlue', backgroundColor: 'rgba(0,0,0,.07)' }}
+            eventKey="0"
+          >
+            Upload
+          </Accordion.Toggle>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body>
+              <div className="input-group">
+                <div className="custom-file">
+                  <input
+                    type="file"
+                    className="custom-file-input"
+                    id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01"
+                  />
+                  <label
+                    className="custom-file-label"
+                    htmlFor="inputGroupFile01"
+                  >
+                    Choose file
+                  </label>
+                </div>
+              </div>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
       <h2 style={headerStyle}>Enter Syllabus Details</h2>
       <Form
         onSubmit={e => {
