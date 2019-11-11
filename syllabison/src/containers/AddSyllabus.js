@@ -42,7 +42,7 @@ let AddSyllabus = ({ dispatch }) => {
           <Accordion.Toggle
             as={Button}
             variant="outline-dark"
-            style={{ color: 'deepSkyBlue', backgroundColor: 'rgba(0,0,0,.07)' }}
+            style={{ color: 'deepSkyBlue' }}
             eventKey="0"
           >
             Upload
