@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Fragment } from 'react';
-import Button from 'react-bootstrap/Button';
+import {
+  Navbar,
+  NavDropdown,
+  Button,
+  Nav,
+  Form,
+  FormControl
+} from 'react-bootstrap';
 import { signIn, signOut } from '../Auth';
 
 const Profile = styled.span`
@@ -23,69 +30,44 @@ class Navigation extends Component {
   render() {
     let { user } = this.props;
     return (
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
-          Home
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarTogglerDemo02"
-          aria-controls="navbarTogglerDemo02"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <Navbar collapseOnSelect expand="lg">
+        <Navbar.Brand href="/">Home</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse>
+          <Nav>
             {user && (
-              <li className="nav-item">
-                <a className="nav-link" href="/new-syllabus">
-                  {' '}
-                  Add New{' '}
-                </a>
-              </li>
+              <Nav.Link
+                style={{ paddingTop: '3%' }}
+                href="/new-syllabus"
+                eventKey="1"
+              >
+                {' '}
+                Add New{' '}
+              </Nav.Link>
             )}
             {!user && (
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  style={{ cursor: 'pointer' }}
-                  onClick={signIn}
-                >
-                  Login
-                </a>
-              </li>
+              <Nav.Link style={{ cursor: 'pointer' }} onClick={signIn}>
+                Login
+              </Nav.Link>
             )}
             {user && (
               <Fragment>
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => this.logout()}
-                  >
-                    Logout
-                  </a>
-                </li>
-                <li className="nav-item" style={{ paddingTop: '1.5%' }}>
+                <Nav.Link
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => this.logout()}
+                ></Nav.Link>
+                <Nav.Link>
+                  Logout
                   <Profile>
                     <ProfilePicture src={user.profile.picture} />
                     {user.profile.email}
                   </Profile>
-                </li>
+                </Nav.Link>
               </Fragment>
             )}
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-            ></input>
+          </Nav>
+          <Form className="ml-auto" inline>
+            <FormControl type="search" placeholder="Search"></FormControl>
             <button
               class="btn btn-outline-dark my-2 my-sm-0"
               style={{ color: 'deepSkyBlue' }}
@@ -93,9 +75,9 @@ class Navigation extends Component {
             >
               Search
             </button>
-          </form>
-        </div>
-      </nav>
+          </Form>
+        </Navbar.Collapse>
+      </Navbar>
     );
   }
 }
