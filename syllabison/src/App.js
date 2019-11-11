@@ -17,6 +17,7 @@ const Image = styled.img`
   height: 15em;
   width: 100%;
   margin-bottom: -3.5%;
+  max-width: 930px;
 `;
 
 class App extends Component {
