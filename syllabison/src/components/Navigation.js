@@ -55,8 +55,7 @@ class Navigation extends Component {
                 <Nav.Link
                   style={{ cursor: 'pointer' }}
                   onClick={() => this.logout()}
-                ></Nav.Link>
-                <Nav.Link>
+                >
                   Logout
                   <Profile>
                     <ProfilePicture src={user.profile.picture} />
