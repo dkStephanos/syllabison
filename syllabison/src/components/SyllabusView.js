@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { getCurrentDate } from '../utils';
-import { Button, Form, Row, Col } from 'react-bootstrap';
-import { InputGroup, Jumbotron } from 'react-bootstrap';
+import {
+  Button,
+  Form,
+  Row,
+  Col,
+  InputGroup,
+  Jumbotron,
+  Modal
+} from 'react-bootstrap';
 
 let headerStyle = {
   paddingBottom: '1%',
@@ -27,7 +34,7 @@ let date = getCurrentDate();
 class SyllabusView extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...this.state, disabled: true };
+    this.state = { ...this.state, disabled: true, show: false };
   }
 
   componentDidMount() {
@@ -64,6 +71,14 @@ class SyllabusView extends Component {
       is_inactive: isInactive
     });
   }
+
+  handleClose = () => {
+    this.setState({ show: false });
+  };
+
+  handleShow = () => {
+    this.setState({ show: true });
+  };
 
   handleOnChange = event => {
     const { name, value } = event.target;
@@ -421,10 +436,39 @@ class SyllabusView extends Component {
               <Button
                 style={{ float: 'right', color: 'deepSkyBlue' }}
                 variant="outline-dark"
-                type="submit"
+                onClick={this.handleShow.bind(this)}
               >
                 Delete Syllabus
               </Button>
+              <Modal
+                show={this.state.show}
+                onHide={this.handleClose.bind(this)}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Confirm Delete</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  Are you sure you want to delete this syllabus?
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    variant="secondary"
+                    onClick={this.handleClose.bind(this)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    style={{ color: 'deepSkyBlue' }}
+                    variant="outline-dark"
+                    onClick={() => {
+                      this.props.actions.deleteSyllabus(syllabus.id);
+                      this.props.history.push(`/`);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </Modal.Footer>
+              </Modal>
               <Button
                 style={{ float: 'right', color: 'deepSkyBlue' }}
                 variant="outline-dark"

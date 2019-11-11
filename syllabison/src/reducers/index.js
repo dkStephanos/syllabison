@@ -1,4 +1,9 @@
-import { ADD_SYLLABUS, UPDATE_SYLLABUS, UPDATED_FORM_DATA } from '../actions';
+import {
+  ADD_SYLLABUS,
+  UPDATE_SYLLABUS,
+  DELETE_SYLLABUS,
+  UPDATED_FORM_DATA
+} from '../actions';
 import { USER_PROFILE_LOADED, SIGN_OUT } from '../actions';
 
 const initialState = {
@@ -22,6 +27,7 @@ const initialState = {
 };
 
 export default function syllabisonApp(state = initialState, action) {
+  let updatedSyllabiList;
   switch (action.type) {
     case ADD_SYLLABUS:
       let newSyllabiList = [
@@ -35,11 +41,20 @@ export default function syllabisonApp(state = initialState, action) {
         syllabiList: newSyllabiList
       };
     case UPDATE_SYLLABUS:
-      let updatedSyllabiList = [
+      updatedSyllabiList = [
         ...state.syllabiList.filter(
           syllabus => syllabus.id !== action.syllabus.id
         ),
         Object.assign({}, action.syllabus)
+      ];
+      return {
+        syllabiList: updatedSyllabiList,
+        user: state.user,
+        syllabusFormData: state.syllabusFormData
+      };
+    case DELETE_SYLLABUS:
+      updatedSyllabiList = [
+        ...state.syllabiList.filter(syllabus => syllabus.id !== action.id)
       ];
       return {
         syllabiList: updatedSyllabiList,
