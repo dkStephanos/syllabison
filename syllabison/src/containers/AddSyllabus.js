@@ -146,6 +146,7 @@ let AddSyllabus = ({ dispatch }) => {
                 ref={node => {
                   course_number = node;
                 }}
+                required
               />
               <Form.Control
                 type="text"
@@ -153,6 +154,7 @@ let AddSyllabus = ({ dispatch }) => {
                 ref={node => {
                   course_name = node;
                 }}
+                required
               />
               <Form.Control
                 type="text"
@@ -160,6 +162,7 @@ let AddSyllabus = ({ dispatch }) => {
                 ref={node => {
                   course_credits = node;
                 }}
+                required
               />
             </InputGroup>
           </Form.Group>
@@ -179,6 +182,7 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 course_desc = node;
               }}
+              required
             />
           </Col>
         </Form.Group>
@@ -195,6 +199,7 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 prereqs = node;
               }}
+              required
             />
           </Col>
         </Form.Group>
@@ -211,6 +216,7 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 coreqs = node;
               }}
+              required
             />
           </Col>
         </Form.Group>
@@ -225,6 +231,7 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 delivery_method = node;
               }}
+              required
             />
           </Col>
         </Form.Group>
@@ -241,6 +248,7 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 dept_contact_info = node;
               }}
+              required
             />
           </Col>
         </Form.Group>
@@ -259,6 +267,7 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 course_goals = node;
               }}
+              required
             />
           </Col>
         </Form.Group>
@@ -275,6 +284,7 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 learning_outcomes = node;
               }}
+              required
             />
           </Col>
         </Form.Group>
@@ -291,6 +301,7 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 course_topics = node;
               }}
+              required
             />
           </Col>
         </Form.Group>
@@ -308,6 +319,7 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 revision_date = node;
               }}
+              required
             />
           </Col>
           <Form.Check
