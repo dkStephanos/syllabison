@@ -16,7 +16,7 @@ let rubric_code, course_number, course_name;
 class SyllabiList extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...this.state, sortChoice: 'rubric' };
+    this.state = { ...this.state, sortChoice: 'rubric', sortedSyllabi: [] };
   }
 
   handleSortSelect(e) {
@@ -35,22 +35,51 @@ class SyllabiList extends Component {
     }
   }
 
+  handleSearch(rubricCode, courseNum, courseName) {
+    let tempSyllabiList = this.props.syllabiList;
+    if (rubricCode != 'Rubric Code:') {
+      tempSyllabiList = tempSyllabiList.filter(syllabus =>
+        syllabus.rubricCode.includes(rubricCode)
+      );
+    }
+    if (courseNum != '') {
+      tempSyllabiList = tempSyllabiList.filter(syllabus =>
+        syllabus.courseNumber.includes(courseNum)
+      );
+    }
+    if (courseName != '') {
+      tempSyllabiList = tempSyllabiList.filter(syllabus =>
+        syllabus.courseName.includes(courseName)
+      );
+    }
+    if (rubricCode == 'Rubric Code:' && courseNum == '' && courseNum == '') {
+      tempSyllabiList = [];
+    }
+    this.setState({ sortedSyllabi: tempSyllabiList });
+  }
+
   render() {
+    let currentSyllabiList;
+    if (this.state.sortedSyllabi.length > 0) {
+      currentSyllabiList = this.state.sortedSyllabi;
+    } else {
+      currentSyllabiList = this.props.syllabiList;
+    }
     switch (this.state.sortChoice) {
       case 'rubric':
-        this.props.syllabiList.sort((s1, s2) => {
+        currentSyllabiList.sort((s1, s2) => {
           return s1.rubricCode > s2.rubricCode ? 1 : -1;
         });
         break;
 
       case 'courseNum':
-        this.props.syllabiList.sort((s1, s2) => {
+        currentSyllabiList.sort((s1, s2) => {
           return s1.courseNumber > s2.courseNumber ? 1 : -1;
         });
         break;
 
       case 'courseName':
-        this.props.syllabiList.sort((s1, s2) => {
+        currentSyllabiList.sort((s1, s2) => {
           return s1.courseName > s2.courseName ? 1 : -1;
         });
         break;
@@ -100,6 +129,13 @@ class SyllabiList extends Component {
             class="btn btn-outline-dark my-2 my-sm-0"
             style={{ color: 'deepSkyBlue' }}
             type="submit"
+            onClick={e =>
+              this.handleSearch(
+                rubric_code.value,
+                course_number.value,
+                course_name.value
+              )
+            }
           >
             Search
           </button>
@@ -134,7 +170,7 @@ class SyllabiList extends Component {
         </InputGroup>
         <br />
         <ListGroup>
-          {this.props.syllabiList.map((syllabus, index) => (
+          {currentSyllabiList.map((syllabus, index) => (
             <SyllabusListItem key={index} {...syllabus} />
           ))}
         </ListGroup>
