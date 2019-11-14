@@ -46,14 +46,17 @@ class Navigation extends Component {
               </Nav.Link>
             )}
             {!user && (
-              <Nav.Link style={{ cursor: 'pointer' }} onClick={signIn}>
+              <Nav.Link
+                style={{ cursor: 'pointer', paddingTop: '3%' }}
+                onClick={signIn}
+              >
                 Login
               </Nav.Link>
             )}
             {user && (
               <Fragment>
                 <Nav.Link
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: 'pointer', paddingTop: '3%' }}
                   onClick={() => this.logout()}
                 >
                   Logout
