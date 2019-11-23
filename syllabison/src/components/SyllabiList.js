@@ -23,7 +23,8 @@ class SyllabiList extends Component {
       sortedSyllabi: [],
       currentSyllabiList: [],
       currentPage: null,
-      totalPages: null
+      totalPages: null,
+      pageLimit: 5
     };
   }
 
@@ -39,6 +40,22 @@ class SyllabiList extends Component {
 
       case 'courseName':
         this.setState({ sortChoice: 'courseName' });
+        break;
+    }
+  }
+
+  handlePageLimitSelect(e) {
+    switch (e) {
+      case '5':
+        this.setState({ pageLimit: 5 });
+        break;
+
+      case '10':
+        this.setState({ pageLimit: 10 });
+        break;
+
+      case '20':
+        this.setState({ pageLimit: 20 });
         break;
     }
   }
@@ -150,7 +167,7 @@ class SyllabiList extends Component {
           />
           <button
             class="btn btn-outline-dark my-2 my-sm-0"
-            style={{ color: 'deepSkyBlue' }}
+            style={{ color: 'deepSkyBlue', backgroundColor: 'white' }}
             type="submit"
             onClick={e =>
               this.handleSearch(
@@ -198,11 +215,29 @@ class SyllabiList extends Component {
           ))}
         </ListGroup>
         <Pagination
-          totalRecords={this.state.currentSyllabiList}
-          pageLimit={1}
+          totalRecords={this.state.currentSyllabiList.length}
+          pageLimit={this.state.pageLimit}
           pageNeighbours={1}
           onPageChanged={this.onPageChanged}
         />
+        <DropdownButton
+          drop="bottom"
+          title={`${this.state.pageLimit} per page`}
+          id={`dropdown-button-drop`}
+          style={{ float: 'right', padding: '.5%' }}
+          variant="secondary"
+          onSelect={e => this.handlePageLimitSelect(e)}
+        >
+          <Dropdown.Item active={this.state.pageLimit == 5} eventKey="5">
+            5
+          </Dropdown.Item>
+          <Dropdown.Item active={this.state.pageLimit == 10} eventKey="10">
+            10
+          </Dropdown.Item>
+          <Dropdown.Item active={this.state.pageLimit == 20} eventKey="20">
+            20
+          </Dropdown.Item>
+        </DropdownButton>
       </Jumbotron>
     );
 
