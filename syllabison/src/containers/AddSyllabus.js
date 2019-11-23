@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addSyllabus } from '../actions';
 import { getCurrentDate } from '../utils';
@@ -10,7 +11,8 @@ import {
   InputGroup,
   Jumbotron,
   Accordion,
-  Card
+  Card,
+  Modal
 } from 'react-bootstrap';
 
 let AddSyllabus = ({ dispatch }) => {
@@ -34,6 +36,8 @@ let AddSyllabus = ({ dispatch }) => {
     paddingBottom: '1%',
     color: 'deepSkyBlue'
   };
+
+  let history = useHistory();
 
   return (
     <Jumbotron>
@@ -69,10 +73,23 @@ let AddSyllabus = ({ dispatch }) => {
           </Accordion.Collapse>
         </Card>
       </Accordion>
+      <Button
+        style={{ color: 'deepSkyBlue', float: 'right' }}
+        variant="outline-dark"
+        type="submit"
+        form="submitForm"
+        onClick={() => {
+          history.push('/');
+        }}
+      >
+        Submit Syllabus
+      </Button>
       <h2 style={headerStyle}>Enter Syllabus Details</h2>
       <Form
+        id="submitForm"
         onSubmit={e => {
           e.preventDefault();
+          console.log(`Submitted: ${course_name.value}`);
           if (
             !rubric_code.value.trim() ||
             !course_number.value.trim() ||
@@ -332,14 +349,6 @@ let AddSyllabus = ({ dispatch }) => {
             }}
           />
         </Form.Group>
-
-        <Button
-          style={{ float: 'right', color: 'deepSkyBlue' }}
-          variant="outline-dark"
-          type="submit"
-        >
-          Submit Syllabus
-        </Button>
       </Form>
     </Jumbotron>
   );
