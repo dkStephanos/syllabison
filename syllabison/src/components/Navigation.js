@@ -25,6 +25,7 @@ const ProfilePicture = styled.img`
 class Navigation extends Component {
   logout = () => {
     this.props.logOutUser();
+    this.props.history.push('/');
   };
 
   render() {
