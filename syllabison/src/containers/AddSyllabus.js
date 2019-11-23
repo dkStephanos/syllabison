@@ -150,6 +150,7 @@ let AddSyllabus = ({ dispatch }) => {
               <Form.Control
                 type="text"
                 placeholder="Course name:"
+                style={{ width: '25%' }}
                 ref={node => {
                   course_name = node;
                 }}
