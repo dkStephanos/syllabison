@@ -37,7 +37,7 @@ class Navigation extends Component {
           <Nav>
             {user && (
               <Nav.Link
-                style={{ paddingTop: '3%' }}
+                style={{ paddingTop: '4%' }}
                 href="/new-syllabus"
                 eventKey="1"
               >
@@ -47,7 +47,7 @@ class Navigation extends Component {
             )}
             {!user && (
               <Nav.Link
-                style={{ cursor: 'pointer', paddingTop: '3%' }}
+                style={{ cursor: 'pointer', paddingTop: '18%' }}
                 onClick={signIn}
               >
                 Login
@@ -56,7 +56,7 @@ class Navigation extends Component {
             {user && (
               <Fragment>
                 <Nav.Link
-                  style={{ cursor: 'pointer', paddingTop: '3%' }}
+                  style={{ cursor: 'pointer', paddingTop: '3.25%' }}
                   onClick={() => this.logout()}
                 >
                   Logout
