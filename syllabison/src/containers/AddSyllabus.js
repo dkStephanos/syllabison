@@ -39,6 +39,37 @@ let AddSyllabus = ({ dispatch }) => {
 
   let history = useHistory();
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(`Submitted: ${course_name.value}`);
+    if (
+      !rubric_code.value.trim() ||
+      !course_number.value.trim() ||
+      !course_name.value.trim()
+    ) {
+      return;
+    }
+    dispatch(
+      addSyllabus(
+        rubric_code.value,
+        course_number.value,
+        course_name.value,
+        course_credits.value,
+        course_desc.value,
+        prereqs.value,
+        coreqs.value,
+        delivery_method.value,
+        dept_contact_info.value,
+        course_goals.value,
+        learning_outcomes.value,
+        course_topics.value,
+        revision_date.value,
+        is_inactive.value
+      )
+    );
+    history.push('/');
+  };
+
   return (
     <Jumbotron>
       <Accordion style={{ float: 'right' }}>
@@ -78,59 +109,11 @@ let AddSyllabus = ({ dispatch }) => {
         variant="outline-dark"
         type="submit"
         form="submitForm"
-        onClick={() => {
-          history.push('/');
-        }}
       >
         Submit Syllabus
       </Button>
       <h2 style={headerStyle}>Enter Syllabus Details</h2>
-      <Form
-        id="submitForm"
-        onSubmit={e => {
-          e.preventDefault();
-          console.log(`Submitted: ${course_name.value}`);
-          if (
-            !rubric_code.value.trim() ||
-            !course_number.value.trim() ||
-            !course_name.value.trim()
-          ) {
-            return;
-          }
-          dispatch(
-            addSyllabus(
-              rubric_code.value,
-              course_number.value,
-              course_name.value,
-              course_credits.value,
-              course_desc.value,
-              prereqs.value,
-              coreqs.value,
-              delivery_method.value,
-              dept_contact_info.value,
-              course_goals.value,
-              learning_outcomes.value,
-              course_topics.value,
-              revision_date.value,
-              is_inactive.value
-            )
-          );
-          rubric_code.value = '';
-          course_number.value = '';
-          course_name.value = '';
-          course_credits.value = '';
-          course_desc.value = '';
-          prereqs.value = '';
-          coreqs.value = '';
-          delivery_method.value = '';
-          dept_contact_info.value = '';
-          course_goals.value = '';
-          learning_outcomes.value = '';
-          course_topics.value = '';
-          revision_date.value = '';
-          is_inactive.value = '';
-        }}
-      >
+      <Form id="submitForm" onSubmit={handleSubmit.bind(this)}>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridEmail">
             <InputGroup>
@@ -163,7 +146,6 @@ let AddSyllabus = ({ dispatch }) => {
                 ref={node => {
                   course_number = node;
                 }}
-                required
               />
               <Form.Control
                 type="text"
@@ -217,7 +199,6 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 prereqs = node;
               }}
-              required
             />
           </Col>
         </Form.Group>
@@ -234,7 +215,6 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 coreqs = node;
               }}
-              required
             />
           </Col>
         </Form.Group>
@@ -249,7 +229,6 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 delivery_method = node;
               }}
-              required
             />
           </Col>
         </Form.Group>
@@ -266,7 +245,6 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 dept_contact_info = node;
               }}
-              required
             />
           </Col>
         </Form.Group>
@@ -285,7 +263,6 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 course_goals = node;
               }}
-              required
             />
           </Col>
         </Form.Group>
@@ -302,7 +279,6 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 learning_outcomes = node;
               }}
-              required
             />
           </Col>
         </Form.Group>
@@ -319,7 +295,6 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 course_topics = node;
               }}
-              required
             />
           </Col>
         </Form.Group>
@@ -337,7 +312,6 @@ let AddSyllabus = ({ dispatch }) => {
               ref={node => {
                 revision_date = node;
               }}
-              required
             />
           </Col>
           <Form.Check
