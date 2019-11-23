@@ -112,9 +112,13 @@ class SyllabusView extends Component {
 
   render() {
     let { syllabus, user, syllabusId, syllabusFormData } = this.props;
-    let disabledStyle;
+    let disabledStyle, courseNameStyle;
     if (this.state.disabled) {
       disabledStyle = { backgroundColor: 'rgba(135,206,250,.35)' };
+      courseNameStyle = {
+        width: '35%',
+        backgroundColor: 'rgba(135,206,250,.35)'
+      };
     } else {
     }
     return (
@@ -212,7 +216,7 @@ class SyllabusView extends Component {
                   name="course_name"
                   onChange={this.handleOnChange}
                   disabled={this.state.disabled}
-                  style={disabledStyle}
+                  style={courseNameStyle}
                   ref={node => {
                     course_name = node;
                   }}
