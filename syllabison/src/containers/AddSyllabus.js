@@ -105,7 +105,11 @@ let AddSyllabus = ({ dispatch }) => {
         </Card>
       </Accordion>
       <Button
-        style={{ color: 'deepSkyBlue', float: 'right' }}
+        style={{
+          color: 'deepSkyBlue',
+          float: 'right',
+          backgroundColor: 'white'
+        }}
         variant="outline-dark"
         type="submit"
         form="submitForm"
