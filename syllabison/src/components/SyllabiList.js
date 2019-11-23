@@ -10,13 +10,21 @@ import {
   Button
 } from 'react-bootstrap';
 import SyllabusListItem from './SyllabusListItem';
+import Pagination from './Pagination';
 
 let rubric_code, course_number, course_name;
 
 class SyllabiList extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...this.state, sortChoice: 'rubric', sortedSyllabi: [] };
+    this.state = {
+      ...this.state,
+      sortChoice: 'rubric',
+      sortedSyllabi: [],
+      currentSyllabiList: [],
+      currentPage: null,
+      totalPages: null
+    };
   }
 
   handleSortSelect(e) {
@@ -58,32 +66,46 @@ class SyllabiList extends Component {
     this.setState({ sortedSyllabi: tempSyllabiList });
   }
 
+  onPageChanged = data => {
+    let currentSyllabiList = this.state.currentSyllabiList;
+    const { currentPage, totalPages, pageLimit } = data;
+
+    const offset = (currentPage - 1) * pageLimit;
+    currentSyllabiList = currentSyllabiList.slice(offset, offset + pageLimit);
+
+    this.setState({ currentPage, currentSyllabiList, totalPages });
+  };
+
   render() {
-    let currentSyllabiList;
+    let syllabiListItems;
     if (this.state.sortedSyllabi.length > 0) {
-      currentSyllabiList = this.state.sortedSyllabi;
+      this.state.currentSyllabiList = this.state.sortedSyllabi;
     } else {
-      currentSyllabiList = this.props.syllabiList;
+      this.state.currentSyllabiList = this.props.syllabiList;
     }
     switch (this.state.sortChoice) {
       case 'rubric':
-        currentSyllabiList.sort((s1, s2) => {
+        this.state.currentSyllabiList.sort((s1, s2) => {
           return s1.rubricCode > s2.rubricCode ? 1 : -1;
         });
         break;
 
       case 'courseNum':
-        currentSyllabiList.sort((s1, s2) => {
+        this.state.currentSyllabiList.sort((s1, s2) => {
           return s1.courseNumber > s2.courseNumber ? 1 : -1;
         });
         break;
 
       case 'courseName':
-        currentSyllabiList.sort((s1, s2) => {
+        this.state.currentSyllabiList.sort((s1, s2) => {
           return s1.courseName > s2.courseName ? 1 : -1;
         });
         break;
     }
+
+    syllabiListItems = this.state.currentSyllabiList.map((syllabus, index) => (
+      <SyllabusListItem key={index} {...syllabus} />
+    ));
 
     return (
       <Jumbotron>
@@ -171,10 +193,16 @@ class SyllabiList extends Component {
         </InputGroup>
         <br />
         <ListGroup>
-          {currentSyllabiList.map((syllabus, index) => (
+          {this.state.currentSyllabiList.map((syllabus, index) => (
             <SyllabusListItem key={index} {...syllabus} />
           ))}
         </ListGroup>
+        <Pagination
+          totalRecords={this.state.currentSyllabiList}
+          pageLimit={1}
+          pageNeighbours={1}
+          onPageChanged={this.onPageChanged}
+        />
       </Jumbotron>
     );
 
