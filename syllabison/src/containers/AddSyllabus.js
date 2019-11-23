@@ -96,7 +96,7 @@ let AddSyllabus = ({ dispatch }) => {
                     className="custom-file-label"
                     htmlFor="inputGroupFile01"
                   >
-                    Choose file
+                    Choose pdf
                   </label>
                 </div>
               </div>
@@ -249,11 +249,11 @@ let AddSyllabus = ({ dispatch }) => {
           </Col>
         </Form.Group>
 
-        <h4 style={headerStyle}>Course Purpose and Outcomes:</h4>
+        <h4 style={headerStyle}>Syllabus Overview:</h4>
 
         <Form.Group as={Row}>
           <Form.Label column sm={2}>
-            Goals:
+            Course Purpose and Objectives:
           </Form.Label>
           <Col sm={10}>
             <Form.Control
@@ -303,7 +303,7 @@ let AddSyllabus = ({ dispatch }) => {
 
         <Form.Group as={Row}>
           <Form.Label column sm={2}>
-            Revision Date:
+            Revision Term:
           </Form.Label>
           <Col sm={3}>
             <Form.Control
