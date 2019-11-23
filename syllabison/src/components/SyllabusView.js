@@ -125,7 +125,11 @@ class SyllabusView extends Component {
       <Jumbotron>
         {this.props.user && this.state.disabled && (
           <Button
-            style={{ float: 'right', color: 'deepSkyBlue' }}
+            style={{
+              float: 'right',
+              color: 'deepSkyBlue',
+              backgroundColor: 'white'
+            }}
             variant="outline-dark"
             onClick={this.handleEditClick.bind(this)}
           >
@@ -135,14 +139,22 @@ class SyllabusView extends Component {
         {this.props.user && !this.state.disabled && (
           <Form.Group>
             <Button
-              style={{ float: 'right', color: 'deepSkyBlue' }}
+              style={{
+                float: 'right',
+                color: 'deepSkyBlue',
+                backgroundColor: 'white'
+              }}
               variant="outline-dark"
               onClick={this.handleEditClick.bind(this)}
             >
               Cancel
             </Button>
             <Button
-              style={{ float: 'right', color: 'deepSkyBlue' }}
+              style={{
+                float: 'right',
+                color: 'deepSkyBlue',
+                backgroundColor: 'white'
+              }}
               variant="outline-dark"
               onClick={this.handleDeleteConfirmShow.bind(this)}
             >
@@ -166,7 +178,7 @@ class SyllabusView extends Component {
                   Cancel
                 </Button>
                 <Button
-                  style={{ color: 'deepSkyBlue' }}
+                  style={{ color: 'deepSkyBlue', backgroundColor: 'white' }}
                   variant="outline-dark"
                   onClick={() => {
                     this.props.actions.deleteSyllabus(syllabus.id);
@@ -178,7 +190,11 @@ class SyllabusView extends Component {
               </Modal.Footer>
             </Modal>
             <Button
-              style={{ float: 'right', color: 'deepSkyBlue' }}
+              style={{
+                float: 'right',
+                color: 'deepSkyBlue',
+                backgroundColor: 'white'
+              }}
               variant="outline-dark"
               onClick={this.handleEditConfirmShow.bind(this)}
             >
@@ -202,7 +218,7 @@ class SyllabusView extends Component {
                   Cancel
                 </Button>
                 <Button
-                  style={{ color: 'deepSkyBlue' }}
+                  style={{ color: 'deepSkyBlue', backgroundColor: 'white' }}
                   variant="outline-dark"
                   type="submit"
                   form="editForm"
@@ -216,7 +232,11 @@ class SyllabusView extends Component {
         )}
         {this.state.disabled && (
           <Button
-            style={{ float: 'right', color: 'deepSkyBlue' }}
+            style={{
+              float: 'right',
+              color: 'deepSkyBlue',
+              backgroundColor: 'white'
+            }}
             variant="outline-dark"
           >
             Download
