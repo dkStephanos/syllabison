@@ -19,7 +19,7 @@ const range = (from, to, step = 1) => {
 class Pagination extends Component {
   constructor(props) {
     super(props);
-    const { totalRecords = null, pageLimit = 1, pageNeighbours = 1 } = props;
+    const { totalRecords = null, pageLimit = 5, pageNeighbours = 1 } = props;
 
     this.pageLimit = typeof pageLimit === 'number' ? pageLimit : 1000;
     this.totalRecords = typeof totalRecords === 'number' ? totalRecords : 0;
@@ -134,7 +134,7 @@ class Pagination extends Component {
     return (
       <Fragment>
         <nav aria-label="Syllabi Pagination">
-          <ul className="pagination">
+          <ul className="pagination" style={{ float: 'right', padding: '.5%' }}>
             {pages.map((page, index) => {
               if (page === LEFT_PAGE)
                 return (
