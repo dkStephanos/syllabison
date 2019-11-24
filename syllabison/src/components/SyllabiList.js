@@ -17,25 +17,25 @@ let rubric_code, course_number, course_name;
 class SyllabiList extends Component {
   constructor(props) {
     super(props);
-    let syllabiList;
-    if (this.props.user) {
-      syllabiList = this.props.syllabiList.filter(
-        syllabus => syllabus.isInactive == 'on'
-      );
-    }
+    console.log(this.props.syllabiList);
     this.state = {
       ...this.state,
       sortChoice: 'rubric',
-      sortedSyllabi: this.props.match.params.searchTerm
-        ? syllabiList.filter(syllabus =>
-            syllabus.courseName.includes(this.props.match.params.searchTerm)
-          )
-        : syllabiList,
+      sortedSyllabi:
+        this.props.match.params.searchTerm &&
+        this.props.match.params.searchTerm != 'callback' &&
+        this.props.match.params.searchTerm != 'new-syllabus'
+          ? this.props.syllabiList.filter(syllabus =>
+              syllabus.courseName.includes(this.props.match.params.searchTerm)
+            )
+          : this.props.syllabiList,
       currentSyllabiList: this.props.syllabiList,
       currentPage: 1,
       totalPages: null,
       pageLimit: 5
     };
+    console.log(this.state.sortedSyllabi);
+    console.log(this.props.match.params.searchTerm);
   }
 
   handleSortSelect(e) {
@@ -128,8 +128,17 @@ class SyllabiList extends Component {
         break;
     }
 
+    let syllabiList;
+    if (this.props.user) {
+      syllabiList = this.state.sortedSyllabi;
+    } else {
+      syllabiList = this.state.sortedSyllabi.filter(
+        syllabus => syllabus.isInactive == 'off'
+      );
+    }
+
     const offset = (this.state.currentPage - 1) * this.state.pageLimit;
-    syllabiListItems = this.state.sortedSyllabi
+    syllabiListItems = syllabiList
       .slice(offset, offset + this.state.pageLimit)
       .map((syllabus, index) => <SyllabusListItem key={index} {...syllabus} />);
 
