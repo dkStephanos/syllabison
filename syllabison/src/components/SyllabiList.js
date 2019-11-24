@@ -22,7 +22,7 @@ class SyllabiList extends Component {
       sortChoice: 'rubric',
       sortedSyllabi: this.props.syllabiList,
       currentSyllabiList: this.props.syllabiList,
-      currentPage: null,
+      currentPage: 1,
       totalPages: null,
       pageLimit: 5
     };
@@ -78,6 +78,7 @@ class SyllabiList extends Component {
       );
     }
     this.setState({ sortedSyllabi: tempSyllabiList });
+    console.log(`Sorted syllabi: ${tempSyllabiList}`);
   }
 
   onPageChanged = data => {
@@ -87,6 +88,7 @@ class SyllabiList extends Component {
     const { currentPage, totalPages, pageLimit } = data;
 
     const offset = (currentPage - 1) * pageLimit;
+    console.log(`Offset: ${offset}`);
     currentSyllabiList = currentSyllabiList.slice(offset, offset + pageLimit);
     console.log(currentSyllabiList);
 
@@ -98,27 +100,28 @@ class SyllabiList extends Component {
 
     switch (this.state.sortChoice) {
       case 'rubric':
-        this.state.currentSyllabiList.sort((s1, s2) => {
+        this.state.sortedSyllabi.sort((s1, s2) => {
           return s1.rubricCode > s2.rubricCode ? 1 : -1;
         });
         break;
 
       case 'courseNum':
-        this.state.currentSyllabiList.sort((s1, s2) => {
+        this.state.sortedSyllabi.sort((s1, s2) => {
           return s1.courseNumber > s2.courseNumber ? 1 : -1;
         });
         break;
 
       case 'courseName':
-        this.state.currentSyllabiList.sort((s1, s2) => {
+        this.state.sortedSyllabi.sort((s1, s2) => {
           return s1.courseName > s2.courseName ? 1 : -1;
         });
         break;
     }
 
-    syllabiListItems = this.state.currentSyllabiList.map((syllabus, index) => (
-      <SyllabusListItem key={index} {...syllabus} />
-    ));
+    const offset = (this.state.currentPage - 1) * this.state.pageLimit;
+    syllabiListItems = this.state.sortedSyllabi
+      .slice(offset, offset + this.state.pageLimit)
+      .map((syllabus, index) => <SyllabusListItem key={index} {...syllabus} />);
 
     return (
       <Jumbotron>
@@ -205,11 +208,7 @@ class SyllabiList extends Component {
           </DropdownButton>
         </InputGroup>
         <br />
-        <ListGroup>
-          {this.state.currentSyllabiList.map((syllabus, index) => (
-            <SyllabusListItem key={index} {...syllabus} />
-          ))}
-        </ListGroup>
+        <ListGroup>{syllabiListItems}</ListGroup>
         <Pagination
           totalRecords={this.state.currentSyllabiList.length}
           pageLimit={this.state.pageLimit}
