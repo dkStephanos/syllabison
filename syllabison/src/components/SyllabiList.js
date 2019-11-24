@@ -20,7 +20,11 @@ class SyllabiList extends Component {
     this.state = {
       ...this.state,
       sortChoice: 'rubric',
-      sortedSyllabi: this.props.syllabiList,
+      sortedSyllabi: this.props.match.params.searchTerm
+        ? this.props.syllabiList.filter(syllabus =>
+            syllabus.courseName.includes(this.props.match.params.searchTerm)
+          )
+        : this.props.syllabiList,
       currentSyllabiList: this.props.syllabiList,
       currentPage: 1,
       totalPages: null,
@@ -61,6 +65,7 @@ class SyllabiList extends Component {
   }
 
   handleSearch(rubricCode, courseNum, courseName) {
+    this.props.match.params.searchTerm = '';
     let tempSyllabiList = this.props.syllabiList;
     if (rubricCode != 'Rubric Code:') {
       tempSyllabiList = tempSyllabiList.filter(syllabus =>
@@ -157,11 +162,10 @@ class SyllabiList extends Component {
           />
           <Form.Control
             type="text"
-            placeholder="Course name:"
-            value={
+            placeholder={
               this.props.match.params.searchTerm
                 ? this.props.match.params.searchTerm
-                : ''
+                : 'Course name:'
             }
             style={{ width: '25%' }}
             ref={node => {
