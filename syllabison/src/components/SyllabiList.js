@@ -20,8 +20,8 @@ class SyllabiList extends Component {
     this.state = {
       ...this.state,
       sortChoice: 'rubric',
-      sortedSyllabi: [],
-      currentSyllabiList: [],
+      sortedSyllabi: this.props.syllabiList,
+      currentSyllabiList: this.props.syllabiList,
       currentPage: null,
       totalPages: null,
       pageLimit: 5
@@ -77,29 +77,25 @@ class SyllabiList extends Component {
         syllabus.courseName.includes(courseName)
       );
     }
-    if (rubricCode == 'Rubric Code:' && courseNum == '' && courseNum == '') {
-      tempSyllabiList = [];
-    }
     this.setState({ sortedSyllabi: tempSyllabiList });
   }
 
   onPageChanged = data => {
-    let currentSyllabiList = this.state.currentSyllabiList;
+    let currentSyllabiList = this.state.sortedSyllabi;
+    console.log(currentSyllabiList);
+
     const { currentPage, totalPages, pageLimit } = data;
 
     const offset = (currentPage - 1) * pageLimit;
     currentSyllabiList = currentSyllabiList.slice(offset, offset + pageLimit);
+    console.log(currentSyllabiList);
 
     this.setState({ currentPage, currentSyllabiList, totalPages });
   };
 
   render() {
     let syllabiListItems;
-    if (this.state.sortedSyllabi.length > 0) {
-      this.state.currentSyllabiList = this.state.sortedSyllabi;
-    } else {
-      this.state.currentSyllabiList = this.props.syllabiList;
-    }
+
     switch (this.state.sortChoice) {
       case 'rubric':
         this.state.currentSyllabiList.sort((s1, s2) => {
