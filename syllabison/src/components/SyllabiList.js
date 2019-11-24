@@ -17,14 +17,20 @@ let rubric_code, course_number, course_name;
 class SyllabiList extends Component {
   constructor(props) {
     super(props);
+    let syllabiList;
+    if (this.props.user) {
+      syllabiList = this.props.syllabiList.filter(
+        syllabus => syllabus.isInactive == 'on'
+      );
+    }
     this.state = {
       ...this.state,
       sortChoice: 'rubric',
       sortedSyllabi: this.props.match.params.searchTerm
-        ? this.props.syllabiList.filter(syllabus =>
+        ? syllabiList.filter(syllabus =>
             syllabus.courseName.includes(this.props.match.params.searchTerm)
           )
-        : this.props.syllabiList,
+        : syllabiList,
       currentSyllabiList: this.props.syllabiList,
       currentPage: 1,
       totalPages: null,

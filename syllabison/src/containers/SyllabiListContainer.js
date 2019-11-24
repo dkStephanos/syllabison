@@ -3,7 +3,8 @@ import SyllabiList from '../components/SyllabiList';
 
 const mapStateToProps = state => {
   return {
-    syllabiList: state.syllabiList
+    syllabiList: state.syllabiList,
+    user: state.user
   };
 };
 

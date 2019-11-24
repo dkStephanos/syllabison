@@ -32,16 +32,16 @@ class App extends Component {
             <Image src={Logo} />
             <NavigationContainer />
             <Route
-              exact
-              path="/:searchTerm?"
-              component={SyllabiListContainer}
-            />
-            <Route
               path="/syllabi/:syllabusId"
               component={SyllabusViewContainer}
             />
             <Route exact path="/new-syllabus" component={AddSyllabus} />
             <Route exact path="/callback" component={Callback} />
+            <Route
+              exact
+              path="/:searchTerm?"
+              component={SyllabiListContainer}
+            />
           </Col>
         </Row>
       </Container>
