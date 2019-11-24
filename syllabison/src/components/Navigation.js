@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { Fragment } from 'react';
 import {
@@ -21,12 +21,17 @@ const ProfilePicture = styled.img`
   max-width: 30px;
   margin-right: 5px;
 `;
+let searchTerm;
 
 class Navigation extends Component {
   logout = () => {
     this.props.logOutUser();
     this.props.history.push('/');
   };
+
+  handleSearch(e) {
+    this.props.history.push(`/${searchTerm.value}`);
+  }
 
   render() {
     let { user } = this.props;
@@ -70,11 +75,17 @@ class Navigation extends Component {
             )}
           </Nav>
           <Form className="ml-auto" inline>
-            <FormControl type="search" placeholder="Search"></FormControl>
+            <FormControl
+              type="search"
+              ref={node => {
+                searchTerm = node;
+              }}
+              placeholder="Search"
+            ></FormControl>
             <button
-              class="btn btn-outline-dark my-2 my-sm-0"
+              className="btn btn-outline-dark my-2 my-sm-0"
               style={{ color: 'deepSkyBlue' }}
-              type="submit"
+              onClick={this.handleSearch.bind(this)}
             >
               Search
             </button>
@@ -85,4 +96,4 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+export default withRouter(Navigation);

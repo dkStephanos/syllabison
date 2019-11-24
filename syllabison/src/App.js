@@ -31,7 +31,11 @@ class App extends Component {
           <Col xs={12}>
             <Image src={Logo} />
             <NavigationContainer />
-            <Route exact path="/" component={SyllabiListContainer} />
+            <Route
+              exact
+              path="/:searchTerm?"
+              component={SyllabiListContainer}
+            />
             <Route
               path="/syllabi/:syllabusId"
               component={SyllabusViewContainer}
