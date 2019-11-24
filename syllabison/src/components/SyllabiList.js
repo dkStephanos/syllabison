@@ -81,19 +81,15 @@ class SyllabiList extends Component {
       sortedSyllabi: tempSyllabiList,
       totalPages: tempSyllabiList.length
     });
-    console.log(`Sorted syllabi: ${tempSyllabiList}`);
   }
 
   onPageChanged = data => {
     let currentSyllabiList = this.state.sortedSyllabi;
-    console.log(currentSyllabiList);
 
     const { currentPage, totalPages, pageLimit } = data;
 
     const offset = (currentPage - 1) * pageLimit;
-    console.log(`Offset: ${offset}`);
     currentSyllabiList = currentSyllabiList.slice(offset, offset + pageLimit);
-    console.log(currentSyllabiList);
 
     this.setState({ currentPage, currentSyllabiList, totalPages });
   };
@@ -212,15 +208,13 @@ class SyllabiList extends Component {
         </InputGroup>
         <br />
         <ListGroup>{syllabiListItems}</ListGroup>
-        {console.log(`Page limit: ${this.state.pageLimit}`)}
-        {console.log(`List items: ${this.state.sortedSyllabi.length}`)}
         <Pagination
           key={this.state.sortedSyllabi.length + this.state.pageLimit}
           totalRecords={this.state.sortedSyllabi.length}
           pageLimit={this.state.pageLimit}
           pageNeighbours={1}
           onPageChanged={this.onPageChanged}
-        />{' '}
+        />
         <DropdownButton
           drop="bottom"
           title={`${this.state.pageLimit} per page`}
