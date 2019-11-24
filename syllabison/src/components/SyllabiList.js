@@ -77,7 +77,10 @@ class SyllabiList extends Component {
         syllabus.courseName.includes(courseName)
       );
     }
-    this.setState({ sortedSyllabi: tempSyllabiList });
+    this.setState({
+      sortedSyllabi: tempSyllabiList,
+      totalPages: tempSyllabiList.length
+    });
     console.log(`Sorted syllabi: ${tempSyllabiList}`);
   }
 
@@ -209,12 +212,15 @@ class SyllabiList extends Component {
         </InputGroup>
         <br />
         <ListGroup>{syllabiListItems}</ListGroup>
+        {console.log(`Page limit: ${this.state.pageLimit}`)}
+        {console.log(`List items: ${this.state.sortedSyllabi.length}`)}
         <Pagination
-          totalRecords={this.state.currentSyllabiList.length}
+          key={this.state.sortedSyllabi.length + this.state.pageLimit}
+          totalRecords={this.state.sortedSyllabi.length}
           pageLimit={this.state.pageLimit}
           pageNeighbours={1}
           onPageChanged={this.onPageChanged}
-        />
+        />{' '}
         <DropdownButton
           drop="bottom"
           title={`${this.state.pageLimit} per page`}
