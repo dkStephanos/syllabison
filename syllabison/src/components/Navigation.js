@@ -52,10 +52,7 @@ class Navigation extends Component {
               </Nav.Link>
             )}
             {!user && (
-              <Nav.Link
-                style={{ cursor: 'pointer', paddingTop: '18%' }}
-                onClick={signIn}
-              >
+              <Nav.Link style={{ cursor: 'pointer' }} onClick={signIn}>
                 Login
               </Nav.Link>
             )}
