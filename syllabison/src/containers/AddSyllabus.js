@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addSyllabus } from '../actions';
 import { getCurrentDate } from '../utils';
@@ -67,7 +67,7 @@ let AddSyllabus = ({ dispatch }) => {
         is_inactive.value
       )
     );
-    history.push('/');
+    history.push('/callback');
   };
 
   return (
@@ -333,4 +333,4 @@ let AddSyllabus = ({ dispatch }) => {
 };
 AddSyllabus = connect()(AddSyllabus);
 
-export default AddSyllabus;
+export default withRouter(AddSyllabus);
