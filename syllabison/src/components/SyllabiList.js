@@ -140,7 +140,9 @@ class SyllabiList extends Component {
     const offset = (this.state.currentPage - 1) * this.state.pageLimit;
     syllabiListItems = syllabiList
       .slice(offset, offset + this.state.pageLimit)
-      .map((syllabus, index) => <SyllabusListItem key={index} {...syllabus} />);
+      .map((syllabus, index) => (
+        <SyllabusListItem key={index} user={this.props.user} {...syllabus} />
+      ));
 
     return (
       <Jumbotron>
@@ -189,7 +191,7 @@ class SyllabiList extends Component {
           />
           <button
             class="btn btn-outline-dark my-2 my-sm-0"
-            style={{ color: 'deepSkyBlue', backgroundColor: 'white' }}
+            style={{ color: 'deepSkyBlue' }}
             type="submit"
             onClick={e =>
               this.handleSearch(

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Button } from 'react-bootstrap';
 
 class SyllabusListItem extends Component {
   constructor(props) {
@@ -14,8 +15,8 @@ class SyllabusListItem extends Component {
     this.setState({ hover: !this.state.hover });
   }
 
-  redirectToShowPage = id => {
-    window.location.replace(`/syllabi/${id}`);
+  redirectToEditPage = id => {
+    window.location.replace(`/syllabi/edit/${id}`);
   };
 
   render() {
@@ -29,11 +30,18 @@ class SyllabusListItem extends Component {
     return (
       <ListGroup.Item
         style={listItemStyle}
-        onClick={() => this.redirectToShowPage(id)}
         onMouseEnter={this.toggleHover.bind(this)}
         onMouseLeave={this.toggleHover.bind(this)}
       >
         {rubricCode} {courseNumber} - {courseName}
+        <Button
+          onClick={() => this.redirectToEditPage(id)}
+          size="sm"
+          variant="secondary"
+          style={{ float: 'right', color: 'skyBlue' }}
+        >
+          edit
+        </Button>
       </ListGroup.Item>
     );
   }

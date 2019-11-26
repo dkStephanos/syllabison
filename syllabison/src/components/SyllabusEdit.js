@@ -31,7 +31,7 @@ let rubric_code,
   is_inactive;
 let date = getCurrentDate();
 
-class SyllabusView extends Component {
+class SyllabusEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -244,18 +244,6 @@ class SyllabusView extends Component {
               </Modal.Footer>
             </Modal>
           </Form.Group>
-        )}
-        {this.state.disabled && (
-          <Button
-            style={{
-              float: 'right',
-              color: 'deepSkyBlue',
-              backgroundColor: 'white'
-            }}
-            variant="outline-dark"
-          >
-            Download
-          </Button>
         )}
         <h2 style={headerStyle}>
           {this.state.disabled
@@ -564,4 +552,4 @@ class SyllabusView extends Component {
   }
 }
 
-export default SyllabusView;
+export default SyllabusEdit;
