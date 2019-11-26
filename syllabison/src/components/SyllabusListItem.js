@@ -38,7 +38,9 @@ class SyllabusListItem extends Component {
         onMouseEnter={this.toggleHover.bind(this)}
         onMouseLeave={this.toggleHover.bind(this)}
       >
-        {rubricCode} {courseNumber} - {courseName}
+        <span style={{ fontSize: '15pt' }}>
+          {rubricCode} {courseNumber} - {courseName}
+        </span>
         {this.props.user && (
           <Button
             onClick={() => this.redirectToEditPage(id)}
