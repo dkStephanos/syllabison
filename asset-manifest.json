@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/my-app/static/js/main.513a96de.chunk.js",
-    "main.js.map": "/my-app/static/js/main.513a96de.chunk.js.map",
-    "runtime-main.js": "/my-app/static/js/runtime-main.db78d5a2.js",
-    "runtime-main.js.map": "/my-app/static/js/runtime-main.db78d5a2.js.map",
-    "static/js/2.e4fcaf4d.chunk.js": "/my-app/static/js/2.e4fcaf4d.chunk.js",
-    "static/js/2.e4fcaf4d.chunk.js.map": "/my-app/static/js/2.e4fcaf4d.chunk.js.map",
-    "index.html": "/my-app/index.html",
-    "precache-manifest.6637e59937b62df019efb9137c2da4e0.js": "/my-app/precache-manifest.6637e59937b62df019efb9137c2da4e0.js",
-    "service-worker.js": "/my-app/service-worker.js",
-    "static/media/SyllabisonLogo.png": "/my-app/static/media/SyllabisonLogo.5edc5970.png"
+    "main.js": "/syllabison/static/js/main.513a96de.chunk.js",
+    "main.js.map": "/syllabison/static/js/main.513a96de.chunk.js.map",
+    "runtime-main.js": "/syllabison/static/js/runtime-main.aebfcd14.js",
+    "runtime-main.js.map": "/syllabison/static/js/runtime-main.aebfcd14.js.map",
+    "static/js/2.90346f99.chunk.js": "/syllabison/static/js/2.90346f99.chunk.js",
+    "static/js/2.90346f99.chunk.js.map": "/syllabison/static/js/2.90346f99.chunk.js.map",
+    "index.html": "/syllabison/index.html",
+    "precache-manifest.d0a73e8ca80b23b15642df731a245ee3.js": "/syllabison/precache-manifest.d0a73e8ca80b23b15642df731a245ee3.js",
+    "service-worker.js": "/syllabison/service-worker.js",
+    "static/media/SyllabisonLogo.png": "/syllabison/static/media/SyllabisonLogo.5edc5970.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.db78d5a2.js",
-    "static/js/2.e4fcaf4d.chunk.js",
+    "static/js/runtime-main.aebfcd14.js",
+    "static/js/2.90346f99.chunk.js",
     "static/js/main.513a96de.chunk.js"
   ]
 }
