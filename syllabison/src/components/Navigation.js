@@ -30,7 +30,7 @@ class Navigation extends Component {
   };
 
   handleSearch(e) {
-    this.props.history.push(`/${searchTerm.value}`);
+    this.props.history.push(`/search/${searchTerm.value}`);
   }
 
   render() {

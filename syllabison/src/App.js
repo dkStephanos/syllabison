@@ -31,6 +31,7 @@ class App extends Component {
           <Col xs={12}>
             <Image src={Logo} />
             <NavigationContainer />
+            <Route exact path="/" component={SyllabiListContainer} />
             <Route
               path="/syllabi/:syllabusId"
               component={SyllabusViewContainer}
@@ -39,7 +40,7 @@ class App extends Component {
             <Route exact path="/callback" component={Callback} />
             <Route
               exact
-              path="/:searchTerm?"
+              path="/search/:searchTerm?"
               component={SyllabiListContainer}
             />
           </Col>
