@@ -142,8 +142,7 @@ class SyllabusEdit extends Component {
           <Button
             style={{
               float: 'right',
-              color: 'deepSkyBlue',
-              backgroundColor: 'white'
+              color: 'deepSkyBlue'
             }}
             variant="outline-dark"
             onClick={this.handleEditClick.bind(this)}
@@ -156,8 +155,7 @@ class SyllabusEdit extends Component {
             <Button
               style={{
                 float: 'right',
-                color: 'deepSkyBlue',
-                backgroundColor: 'white'
+                color: 'deepSkyBlue'
               }}
               variant="outline-dark"
               onClick={this.handleEditClick.bind(this)}
@@ -167,8 +165,7 @@ class SyllabusEdit extends Component {
             <Button
               style={{
                 float: 'right',
-                color: 'deepSkyBlue',
-                backgroundColor: 'white'
+                color: 'deepSkyBlue'
               }}
               variant="outline-dark"
               onClick={this.handleDeleteConfirmShow.bind(this)}
@@ -207,8 +204,7 @@ class SyllabusEdit extends Component {
             <Button
               style={{
                 float: 'right',
-                color: 'deepSkyBlue',
-                backgroundColor: 'white'
+                color: 'deepSkyBlue'
               }}
               variant="outline-dark"
               onClick={this.handleEditConfirmShow.bind(this)}
@@ -233,7 +229,7 @@ class SyllabusEdit extends Component {
                   Cancel
                 </Button>
                 <Button
-                  style={{ color: 'deepSkyBlue', backgroundColor: 'white' }}
+                  style={{ color: 'deepSkyBlue' }}
                   variant="outline-dark"
                   type="submit"
                   form="editForm"
