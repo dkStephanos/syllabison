@@ -32,13 +32,13 @@ class SyllabusListItem extends Component {
     }
 
     return (
-      <ListGroup.Item
-        style={listItemStyle}
-        onClick={() => this.redirectToShowPage(id)}
-        onMouseEnter={this.toggleHover.bind(this)}
-        onMouseLeave={this.toggleHover.bind(this)}
-      >
-        <span style={{ fontSize: '15pt' }}>
+      <ListGroup.Item style={listItemStyle}>
+        <span
+          onMouseEnter={this.toggleHover.bind(this)}
+          onMouseLeave={this.toggleHover.bind(this)}
+          onClick={() => this.redirectToShowPage(id)}
+          style={{ fontSize: '15pt' }}
+        >
           {rubricCode} {courseNumber} - {courseName}
         </span>
         {this.props.user && (
