@@ -38,14 +38,16 @@ const styles = StyleSheet.create({
   }
 });
 
-export default () => (
+export default props => (
   <View style={styles.container}>
     <View style={styles.detailColumn}>
-      <Text style={styles.name}>Luke Skywalker</Text>
-      <Text style={styles.subtitle}>Jedi Master</Text>
+      <Text style={styles.name}>{props.syllabus.courseName}</Text>
+      <Text style={styles.subtitle}>
+        {props.syllabus.rubricCode} - {props.syllabus.courseNumber}
+      </Text>
     </View>
     <View style={styles.linkColumn}>
-      <Link style={styles.link}>luke@theforce.com</Link>
+      <Link style={styles.link}>www.etsu.edu</Link>
     </View>
   </View>
 );

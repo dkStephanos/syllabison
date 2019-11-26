@@ -4,8 +4,10 @@ import { PDFViewer } from '@react-pdf/renderer';
 import SyllabusDocument from '../components/SyllabusDocument';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
+  const { syllabusId } = props.match.params;
   return {
+    syllabus: state.syllabiList.find(e => e.id == syllabusId),
     user: state.user
   };
 };
