@@ -37,17 +37,17 @@ class App extends Component {
             <Route exact path="/callback" component={Callback} />
             <Route
               exact
-              path="/document"
-              component={SyllabusDocumentContainer}
-            />
-            <Route
-              exact
               path="/search/:searchTerm?"
               component={SyllabiListContainer}
             />
             <Route
               path="/syllabi/edit/:syllabusId"
               component={SyllabusViewContainer}
+            />
+            <Route
+              exact
+              path="/syllabi/:syllabusId"
+              component={SyllabusDocumentContainer}
             />
           </Col>
         </Row>

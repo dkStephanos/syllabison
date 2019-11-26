@@ -11,11 +11,7 @@ const mapStateToProps = state => {
 };
 
 let SyllabusDocumentContainer = () => {
-  return (
-    <PDFViewer>
-      <SyllabusDocument />
-    </PDFViewer>
-  );
+  return <SyllabusDocument />;
 };
 
 SyllabusDocumentContainer = connect(mapStateToProps)(SyllabusDocument);

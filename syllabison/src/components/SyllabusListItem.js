@@ -15,6 +15,10 @@ class SyllabusListItem extends Component {
     this.setState({ hover: !this.state.hover });
   }
 
+  redirectToShowPage = id => {
+    window.location.replace(`/syllabi/${id}`);
+  };
+
   redirectToEditPage = id => {
     window.location.replace(`/syllabi/edit/${id}`);
   };
@@ -30,6 +34,7 @@ class SyllabusListItem extends Component {
     return (
       <ListGroup.Item
         style={listItemStyle}
+        onClick={() => this.redirectToShowPage(id)}
         onMouseEnter={this.toggleHover.bind(this)}
         onMouseLeave={this.toggleHover.bind(this)}
       >
