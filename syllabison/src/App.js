@@ -11,6 +11,7 @@ import NavigationContainer from './containers/NavigationContainer';
 import AddSyllabus from './containers/AddSyllabus';
 import SyllabiListContainer from './containers/SyllabiListContainer';
 import SyllabusViewContainer from './containers/SyllabusViewContainer';
+import SyllabusDocumentContainer from './containers/SyllabusDocumentContainer';
 
 import Logo from './SyllabisonLogo.png';
 const Image = styled.img`
@@ -38,6 +39,11 @@ class App extends Component {
             />
             <Route exact path="/new-syllabus" component={AddSyllabus} />
             <Route exact path="/callback" component={Callback} />
+            <Route
+              exact
+              path="/document"
+              component={SyllabusDocumentContainer}
+            />
             <Route
               exact
               path="/search/:searchTerm?"
