@@ -39,14 +39,16 @@ class SyllabusListItem extends Component {
         onMouseLeave={this.toggleHover.bind(this)}
       >
         {rubricCode} {courseNumber} - {courseName}
-        <Button
-          onClick={() => this.redirectToEditPage(id)}
-          size="sm"
-          variant="secondary"
-          style={{ float: 'right', color: 'skyBlue' }}
-        >
-          edit
-        </Button>
+        {this.props.user && (
+          <Button
+            onClick={() => this.redirectToEditPage(id)}
+            size="sm"
+            variant="secondary"
+            style={{ float: 'right', color: 'skyBlue' }}
+          >
+            edit
+          </Button>
+        )}
       </ListGroup.Item>
     );
   }
