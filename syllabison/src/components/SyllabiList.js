@@ -239,24 +239,28 @@ class SyllabiList extends Component {
           pageNeighbours={1}
           onPageChanged={this.onPageChanged}
         />
-        <DropdownButton
-          drop="bottom"
-          title={`${this.state.pageLimit} per page`}
-          id={`dropdown-button-drop`}
-          style={{ float: 'right', padding: '.5%' }}
-          variant="secondary"
-          onSelect={e => this.handlePageLimitSelect(e)}
-        >
-          <Dropdown.Item active={this.state.pageLimit == 5} eventKey="5">
-            5
-          </Dropdown.Item>
-          <Dropdown.Item active={this.state.pageLimit == 10} eventKey="10">
-            10
-          </Dropdown.Item>
-          <Dropdown.Item active={this.state.pageLimit == 20} eventKey="20">
-            20
-          </Dropdown.Item>
-        </DropdownButton>
+        {this.state.sortedSyllabi.length > 5 && (
+          <DropdownButton
+            drop="bottom"
+            title={`${this.state.pageLimit} per page`}
+            id={`dropdown-button-drop`}
+            style={{ float: 'right', padding: '.5%' }}
+            variant="secondary"
+            onSelect={e => this.handlePageLimitSelect(e)}
+          >
+            <Dropdown.Item active={this.state.pageLimit == 5} eventKey="5">
+              5
+            </Dropdown.Item>
+            <Dropdown.Item active={this.state.pageLimit == 10} eventKey="10">
+              10
+            </Dropdown.Item>
+            {this.state.sortedSyllabi.length > 10 && (
+              <Dropdown.Item active={this.state.pageLimit == 20} eventKey="20">
+                20
+              </Dropdown.Item>
+            )}
+          </DropdownButton>
+        )}
       </Jumbotron>
     );
 
