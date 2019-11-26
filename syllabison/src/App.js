@@ -10,7 +10,7 @@ import Callback from './containers/Callback';
 import NavigationContainer from './containers/NavigationContainer';
 import AddSyllabus from './containers/AddSyllabus';
 import SyllabiListContainer from './containers/SyllabiListContainer';
-import SyllabusViewContainer from './containers/SyllabusViewContainer';
+import SyllabusEditContainer from './containers/SyllabusEditContainer';
 import SyllabusDocumentContainer from './containers/SyllabusDocumentContainer';
 
 import Logo from './SyllabisonLogo.png';
@@ -42,7 +42,7 @@ class App extends Component {
             />
             <Route
               path="/syllabi/edit/:syllabusId"
-              component={SyllabusViewContainer}
+              component={SyllabusEditContainer}
             />
             <Route
               exact

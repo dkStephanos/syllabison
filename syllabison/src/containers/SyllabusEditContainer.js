@@ -19,9 +19,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const SyllabiViewContainer = connect(
+const SyllabiEditContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(SyllabusEdit);
 
-export default SyllabiViewContainer;
+export default SyllabiEditContainer;
