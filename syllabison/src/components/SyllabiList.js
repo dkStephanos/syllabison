@@ -133,7 +133,7 @@ class SyllabiList extends Component {
       syllabiList = this.state.sortedSyllabi;
     } else {
       syllabiList = this.state.sortedSyllabi.filter(
-        syllabus => syllabus.isInactive == 'off'
+        syllabus => syllabus.isInactive == false
       );
     }
 

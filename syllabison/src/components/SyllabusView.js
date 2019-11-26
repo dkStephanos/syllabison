@@ -95,11 +95,26 @@ class SyllabusView extends Component {
 
   handleOnChange = event => {
     const { name, value } = event.target;
+    console.log(event.target);
     const currentSyllabusFormData = Object.assign(
       {},
       this.props.syllabusFormData,
       {
         [name]: value
+      }
+    );
+    console.log(currentSyllabusFormData);
+    this.props.actions.updateSyllabusFormData(currentSyllabusFormData);
+  };
+
+  toggleInactive = event => {
+    const { name, checked } = event.target;
+    console.log(event.target);
+    const currentSyllabusFormData = Object.assign(
+      {},
+      this.props.syllabusFormData,
+      {
+        [name]: checked
       }
     );
     console.log(currentSyllabusFormData);
@@ -275,7 +290,7 @@ class SyllabusView extends Component {
               learning_outcomes.value,
               course_topics.value,
               revision_date.value,
-              is_inactive.value
+              is_inactive.checked
             );
           }}
         >
@@ -533,9 +548,9 @@ class SyllabusView extends Component {
                 style={{ paddingTop: '.5%' }}
                 type="checkbox"
                 label="Is Inactive"
-                value={syllabusFormData.is_inactive}
+                checked={syllabusFormData.is_inactive}
                 name="is_inactive"
-                onChange={this.handleOnChange}
+                onChange={this.toggleInactive}
                 disabled={this.state.disabled}
                 ref={node => {
                   is_inactive = node;
