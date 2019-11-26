@@ -6,7 +6,7 @@ import SyllabusEdit from '../components/SyllabusEdit';
 const mapStateToProps = (state, props) => {
   const { syllabusId } = props.match.params;
   return {
-    syllabus: state.syllabiList.find(e => e.id == syllabusId), //Just set to the first in the collection for now...
+    syllabus: state.syllabiList.find(e => e.id == syllabusId),
     user: state.user,
     syllabusId: syllabusId,
     syllabusFormData: state.syllabusFormData
