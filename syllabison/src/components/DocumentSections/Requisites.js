@@ -15,15 +15,17 @@ const styles = StyleSheet.create({
   }
 });
 
-const Skills = props => (
+const Requisites = props => (
   <View>
-    <Title style={styles.title}>Prereqs/coreqs</Title>
+    <Title style={styles.title}>Prereqs</Title>
     <Text style={styles.reqs}>
-      {props.syllabus.prereqs || props.syllabus.coreqs
-        ? `${props.syllabus.prereqs}\n${props.syllabus.coreqs}`
-        : 'N/A'}
+      {props.syllabus.prereqs ? `${props.syllabus.prereqs}` : 'N/A'}
+    </Text>
+    <Title style={styles.title}>Coreqs</Title>
+    <Text style={styles.reqs}>
+      {props.syllabus.coreqs ? `${props.syllabus.coreqs}` : 'N/A'}
     </Text>
   </View>
 );
 
-export default Skills;
+export default Requisites;

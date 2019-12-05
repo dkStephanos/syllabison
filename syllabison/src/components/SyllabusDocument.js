@@ -13,7 +13,7 @@ import ReactPDF, {
 import Header from './DocumentSections/Header';
 import Education from './DocumentSections/Education';
 import Experience from './DocumentSections/Experience';
-import Skills from './DocumentSections/Skills';
+import Requisites from './DocumentSections/Requisites';
 
 const styles = StyleSheet.create({
   page: {
@@ -63,7 +63,7 @@ const Syllabus = props => (
       <View style={styles.leftColumn}>
         <Image src="../Syllabison.png" style={styles.image} />
         <Education syllabus={props.syllabus} />
-        <Skills syllabus={props.syllabus} />
+        <Requisites syllabus={props.syllabus} />
       </View>
       <Experience syllabus={props.syllabus} />
     </View>
