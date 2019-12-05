@@ -36,7 +36,6 @@ class SyllabusEdit extends Component {
     super(props);
     this.state = {
       ...this.state,
-      disabled: true,
       editConfirmShow: false,
       deleteConfirmShow: false
     };
@@ -121,47 +120,15 @@ class SyllabusEdit extends Component {
     this.props.actions.updateSyllabusFormData(currentSyllabusFormData);
   };
 
-  handleEditClick() {
-    this.setState({ disabled: !this.state.disabled });
-  }
-
   render() {
     let { syllabus, user, syllabusId, syllabusFormData } = this.props;
-    let disabledStyle, courseNameStyle;
-    if (this.state.disabled) {
-      disabledStyle = { backgroundColor: 'rgba(135,206,250,.35)' };
-      courseNameStyle = {
-        width: '35%',
-        backgroundColor: 'rgba(135,206,250,.35)'
-      };
-    } else {
-    }
+    let courseNameStyle = {
+      width: '35%'
+    };
     return (
       <Jumbotron>
-        {this.props.user && this.state.disabled && (
-          <Button
-            style={{
-              float: 'right',
-              color: 'deepSkyBlue'
-            }}
-            variant="outline-dark"
-            onClick={this.handleEditClick.bind(this)}
-          >
-            Edit Syllabus
-          </Button>
-        )}
-        {this.props.user && !this.state.disabled && (
+        {this.props.user && (
           <Form.Group>
-            <Button
-              style={{
-                float: 'right',
-                color: 'deepSkyBlue'
-              }}
-              variant="outline-dark"
-              onClick={this.handleEditClick.bind(this)}
-            >
-              Cancel
-            </Button>
             <Button
               style={{
                 float: 'right',
@@ -241,16 +208,11 @@ class SyllabusEdit extends Component {
             </Modal>
           </Form.Group>
         )}
-        <h2 style={headerStyle}>
-          {this.state.disabled
-            ? syllabus.courseName
-            : `Editing ${syllabus.courseName}`}
-        </h2>
+        <h2 style={headerStyle}>{`Editing ${syllabus.courseName}`}</h2>
         <Form
           id="editForm"
           onSubmit={e => {
             e.preventDefault();
-            this.handleEditClick();
             if (
               !rubric_code.value.trim() ||
               !course_number.value.trim() ||
@@ -290,8 +252,6 @@ class SyllabusEdit extends Component {
                   value={syllabusFormData.rubric_code}
                   name="rubric_code"
                   onChange={this.handleOnChange}
-                  disabled={this.state.disabled}
-                  style={disabledStyle}
                   ref={node => {
                     rubric_code = node;
                   }}
@@ -314,8 +274,6 @@ class SyllabusEdit extends Component {
                   value={syllabusFormData.course_number}
                   name="course_number"
                   onChange={this.handleOnChange}
-                  disabled={this.state.disabled}
-                  style={disabledStyle}
                   ref={node => {
                     course_number = node;
                   }}
@@ -325,7 +283,6 @@ class SyllabusEdit extends Component {
                   value={syllabusFormData.course_name}
                   name="course_name"
                   onChange={this.handleOnChange}
-                  disabled={this.state.disabled}
                   style={courseNameStyle}
                   ref={node => {
                     course_name = node;
@@ -336,8 +293,6 @@ class SyllabusEdit extends Component {
                   value={syllabusFormData.course_credits}
                   name="course_credits"
                   onChange={this.handleOnChange}
-                  disabled={this.state.disabled}
-                  style={disabledStyle}
                   ref={node => {
                     course_credits = node;
                   }}
@@ -359,8 +314,6 @@ class SyllabusEdit extends Component {
                 value={syllabusFormData.course_desc}
                 name="course_desc"
                 onChange={this.handleOnChange}
-                disabled={this.state.disabled}
-                style={disabledStyle}
                 ref={node => {
                   course_desc = node;
                 }}
@@ -379,8 +332,6 @@ class SyllabusEdit extends Component {
                 value={syllabusFormData.prereqs}
                 name="prereqs"
                 onChange={this.handleOnChange}
-                disabled={this.state.disabled}
-                style={disabledStyle}
                 ref={node => {
                   prereqs = node;
                 }}
@@ -399,8 +350,6 @@ class SyllabusEdit extends Component {
                 value={syllabusFormData.coreqs}
                 name="coreqs"
                 onChange={this.handleOnChange}
-                disabled={this.state.disabled}
-                style={disabledStyle}
                 ref={node => {
                   coreqs = node;
                 }}
@@ -417,8 +366,6 @@ class SyllabusEdit extends Component {
                 value={syllabusFormData.delivery_method}
                 name="delivery_method"
                 onChange={this.handleOnChange}
-                disabled={this.state.disabled}
-                style={disabledStyle}
                 ref={node => {
                   delivery_method = node;
                 }}
@@ -437,8 +384,6 @@ class SyllabusEdit extends Component {
                 value={syllabusFormData.dept_contact_info}
                 name="dept_contact_info"
                 onChange={this.handleOnChange}
-                disabled={this.state.disabled}
-                style={disabledStyle}
                 ref={node => {
                   dept_contact_info = node;
                 }}
@@ -459,8 +404,6 @@ class SyllabusEdit extends Component {
                 value={syllabusFormData.course_goals}
                 name="course_goals"
                 onChange={this.handleOnChange}
-                disabled={this.state.disabled}
-                style={disabledStyle}
                 ref={node => {
                   course_goals = node;
                 }}
@@ -479,8 +422,6 @@ class SyllabusEdit extends Component {
                 value={syllabusFormData.learning_outcomes}
                 name="learning_outcomes"
                 onChange={this.handleOnChange}
-                disabled={this.state.disabled}
-                style={disabledStyle}
                 ref={node => {
                   learning_outcomes = node;
                 }}
@@ -499,8 +440,6 @@ class SyllabusEdit extends Component {
                 value={syllabusFormData.course_topics}
                 name="course_topics"
                 onChange={this.handleOnChange}
-                disabled={this.state.disabled}
-                style={disabledStyle}
                 ref={node => {
                   course_topics = node;
                 }}
@@ -520,8 +459,6 @@ class SyllabusEdit extends Component {
                 value={syllabusFormData.revision_date}
                 name="revision_date"
                 onChange={this.handleOnChange}
-                style={disabledStyle}
-                disabled={this.state.disabled}
                 ref={node => {
                   revision_date = node;
                 }}
@@ -535,7 +472,6 @@ class SyllabusEdit extends Component {
                 checked={syllabusFormData.is_inactive}
                 name="is_inactive"
                 onChange={this.toggleInactive}
-                disabled={this.state.disabled}
                 ref={node => {
                   is_inactive = node;
                 }}
