@@ -41,9 +41,12 @@ const styles = StyleSheet.create({
 export default props => (
   <View style={styles.container}>
     <View style={styles.detailColumn}>
-      <Text style={styles.name}>{props.syllabus.courseName}</Text>
+      <Text style={styles.name}>
+        {props.syllabus.rubricCode} {props.syllabus.courseNumber} -{' '}
+        {props.syllabus.courseName}
+      </Text>
       <Text style={styles.subtitle}>
-        {props.syllabus.rubricCode} - {props.syllabus.courseNumber}
+        {props.syllabus.courseCredits} Credits
       </Text>
     </View>
     <View style={styles.linkColumn}>

@@ -11,9 +11,8 @@ import ReactPDF, {
   PDFViewer
 } from '@react-pdf/renderer';
 import Header from './DocumentSections/Header';
-import Education from './DocumentSections/Education';
-import Experience from './DocumentSections/Experience';
-import Requisites from './DocumentSections/Requisites';
+import ContactInfo from './DocumentSections/ContactInfo';
+import SyllabusDetails from './DocumentSections/SyllabusDetails';
 
 const styles = StyleSheet.create({
   page: {
@@ -62,10 +61,9 @@ const Syllabus = props => (
     <View style={styles.container}>
       <View style={styles.leftColumn}>
         <Image src="../Syllabison.png" style={styles.image} />
-        <Education syllabus={props.syllabus} />
-        <Requisites syllabus={props.syllabus} />
+        <ContactInfo syllabus={props.syllabus} />
       </View>
-      <Experience syllabus={props.syllabus} />
+      <SyllabusDetails syllabus={props.syllabus} />
     </View>
     <Text
       style={styles.footer}
