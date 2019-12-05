@@ -5,61 +5,7 @@ import {
   UPDATED_FORM_DATA
 } from '../actions';
 import { USER_PROFILE_LOADED, SIGN_OUT } from '../actions';
-
-const initialState = {
-  syllabiList: [
-    {
-      id: 0,
-      rubricCode: 'MATH',
-      courseNumber: '1000',
-      courseName: 'How to Add Numbers',
-      courseCredits: '',
-      courseDesc: '',
-      prereqs: '',
-      coreqs: '',
-      deliveryMethod: '',
-      deptContactInfo: '',
-      courseGoals: '',
-      learningOutcomes: '',
-      courseTopics: '',
-      revisionDate: '',
-      isInactive: false
-    },
-    {
-      id: 1,
-      rubricCode: 'CSCI',
-      courseNumber: '1100',
-      courseName: 'Using InfoTech',
-      courseCredits: '',
-      courseDesc: '',
-      prereqs: '',
-      coreqs: '',
-      deliveryMethod: '',
-      deptContactInfo: '',
-      courseGoals: '',
-      learningOutcomes: '',
-      courseTopics: '',
-      revisionDate: '',
-      isInactive: false
-    }
-  ],
-  syllabusFormData: {
-    rubric_ode: '',
-    course_number: '',
-    course_name: '',
-    course_credits: '',
-    course_desc: '',
-    prereqs: '',
-    coreqs: '',
-    delivery_method: '',
-    dept_contact_info: '',
-    course_goals: '',
-    learning_outcomes: '',
-    course_topics: '',
-    revision_date: '',
-    is_inactive: false
-  }
-};
+import { initialState } from './initialState';
 
 export default function syllabisonApp(state = initialState, action) {
   let updatedSyllabiList;
